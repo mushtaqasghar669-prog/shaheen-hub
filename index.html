@@ -5,56 +5,56 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description"
-        content="Shaheen Hub is an all-in-one digital platform for useful tools, productivity, learning, creativity, and everyday digital needs.">
+  <title>Shaheen Hub — Useful Tools, Productivity, Learning & More</title>
+
+  <meta
+    name="description"
+    content="Shaheen Hub is an all-in-one digital platform for useful tools, productivity, learning, creativity, knowledge and everyday digital needs."
+  >
 
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#07111f">
-
-  <link rel="canonical" href="https://shaheen-hub.vercel.app/">
-
-  <title>Shaheen Hub — Your Digital Super Hub</title>
+  <meta name="theme-color" content="#0057ff">
 
   <!-- Google AdSense -->
-  <script async
+  <script
+    async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2057536839831582"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+  </script>
 
   <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --text: #101828;
+      --muted: #667085;
+      --primary: #0057ff;
+      --primary2: #00cfff;
+      --border: #e4e7ec;
+      --shadow: 0 10px 30px rgba(16,24,40,.08);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    :root {
-      --bg: #07111f;
-      --surface: #0d1b2e;
-      --surface2: #13243b;
-      --text: #ffffff;
-      --muted: #9fb0c5;
-      --primary: #1677ff;
-      --primary2: #00cfff;
-      --border: rgba(255,255,255,.09);
-      --shadow: 0 15px 45px rgba(0,0,0,.25);
-    }
-
-    body.light {
-      --bg: #f5f8fc;
-      --surface: #ffffff;
-      --surface2: #edf3fa;
-      --text: #101828;
-      --muted: #667085;
-      --border: rgba(16,24,40,.09);
-      --shadow: 0 15px 40px rgba(16,24,40,.08);
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      transition: .25s;
     }
 
     button,
@@ -62,12 +62,13 @@
       font: inherit;
     }
 
-    button {
-      cursor: pointer;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .container {
-      width: min(1120px, calc(100% - 30px));
+      width: min(1120px, calc(100% - 32px));
       margin: auto;
     }
 
@@ -75,13 +76,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(18px);
-      background: rgba(7,17,31,.82);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-    }
-
-    body.light header {
-      background: rgba(255,255,255,.86);
     }
 
     .nav {
@@ -89,119 +86,109 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 20px;
+      gap: 16px;
     }
 
     .logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg,var(--primary),var(--primary2));
-      color: white;
-      font-size: 21px;
-      box-shadow: 0 8px 25px rgba(0,150,255,.25);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -.5px;
     }
 
-    .nav-actions {
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
       display: flex;
-      gap: 8px;
-    }
-
-    .icon-btn,
-    .auth-btn {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      border-radius: 12px;
-      padding: 9px 13px;
-    }
-
-    .auth-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
       font-weight: 700;
     }
 
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .auth-btn {
+      border: 0;
+      background: var(--primary);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     .hero {
-      padding: 75px 0 45px;
+      padding: 72px 0 48px;
       text-align: center;
     }
 
     .badge {
       display: inline-block;
-      padding: 7px 13px;
+      padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(22,119,255,.12);
-      color: var(--primary2);
+      background: #e9f1ff;
+      color: var(--primary);
+      font-weight: 800;
       font-size: 13px;
-      font-weight: 700;
       margin-bottom: 18px;
     }
 
-    h1 {
-      font-size: clamp(38px, 8vw, 72px);
-      line-height: 1.02;
-      letter-spacing: -2px;
-      margin-bottom: 18px;
+    .hero h1 {
+      max-width: 850px;
+      margin: auto;
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.03;
+      letter-spacing: -2.5px;
     }
 
-    .gradient {
-      background: linear-gradient(90deg,var(--primary2),#ffffff,var(--primary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .hero h1 span {
+      color: var(--primary);
     }
 
     .hero p {
       max-width: 700px;
-      margin: auto;
+      margin: 20px auto 28px;
       color: var(--muted);
-      font-size: 17px;
+      font-size: 18px;
     }
 
     .search-box {
       max-width: 680px;
-      margin: 30px auto 0;
+      margin: auto;
       display: flex;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 7px;
-      box-shadow: var(--shadow);
+      gap: 10px;
     }
 
     .search-box input {
       flex: 1;
       min-width: 0;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      color: var(--text);
-      padding: 13px;
+      padding: 15px 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      background: white;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
     }
 
     .search-box button {
       border: 0;
-      border-radius: 11px;
-      padding: 0 18px;
+      border-radius: 14px;
+      padding: 0 20px;
       background: var(--primary);
       color: white;
-      font-weight: 700;
+      font-weight: 800;
+      cursor: pointer;
     }
 
     section {
-      padding: 35px 0;
+      padding: 42px 0;
     }
 
     .section-title {
@@ -209,7 +196,8 @@
     }
 
     .section-title h2 {
-      font-size: 28px;
+      font-size: 30px;
+      letter-spacing: -.8px;
     }
 
     .section-title p {
@@ -218,31 +206,38 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 15px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
     }
 
     .card {
-      background: var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 22px;
-      transition: .2s;
+      padding: 24px;
       box-shadow: var(--shadow);
+      transition: transform .2s ease;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0,207,255,.35);
+      transform: translateY(-3px);
     }
 
-    .card-icon {
-      font-size: 30px;
-      margin-bottom: 12px;
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #eaf1ff;
+      color: var(--primary);
+      font-size: 23px;
+      margin-bottom: 16px;
     }
 
     .card h3 {
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      font-size: 19px;
     }
 
     .card p {
@@ -251,28 +246,40 @@
     }
 
     .card button {
-      margin-top: 17px;
+      margin-top: 18px;
       border: 0;
-      background: var(--surface2);
-      color: var(--text);
-      padding: 9px 13px;
-      border-radius: 10px;
+      background: transparent;
+      color: var(--primary);
+      font-weight: 800;
+      cursor: pointer;
+      padding: 0;
     }
 
-    .ad-slot {
-      min-height: 90px;
-      margin: 25px 0;
+    .ad-space {
+      min-height: 120px;
+      margin: 30px auto;
       display: flex;
-      justify-content: center;
       align-items: center;
-      color: var(--muted);
+      justify-content: center;
+      color: #98a2b3;
       font-size: 12px;
     }
 
-    footer {
-      margin-top: 50px;
-      padding: 40px 0;
+    .info {
+      background: white;
       border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info p {
+      color: var(--muted);
+      max-width: 850px;
+    }
+
+    footer {
+      padding: 40px 0;
+      background: #101828;
+      color: white;
     }
 
     .footer-grid {
@@ -283,45 +290,47 @@
 
     footer p,
     footer a {
-      color: var(--muted);
+      color: #98a2b3;
       font-size: 14px;
+    }
+
+    footer h3 {
+      margin-bottom: 10px;
     }
 
     footer a {
       display: block;
-      margin-top: 7px;
-      text-decoration: none;
+      margin: 7px 0;
     }
 
     footer a:hover {
-      color: var(--primary2);
+      color: white;
     }
 
     .modal {
-      display: none;
       position: fixed;
       inset: 0;
-      z-index: 200;
-      background: rgba(0,0,0,.7);
-      place-items: center;
+      background: rgba(0,0,0,.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
+      z-index: 1000;
     }
 
-    .modal.active {
-      display: grid;
+    .modal.show {
+      display: flex;
     }
 
     .modal-box {
-      width: min(430px,100%);
-      background: var(--surface);
-      border: 1px solid var(--border);
+      width: min(430px, 100%);
+      background: white;
       border-radius: 22px;
-      padding: 25px;
-      box-shadow: var(--shadow);
+      padding: 26px;
     }
 
     .modal-box h2 {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .modal-box p {
@@ -330,63 +339,71 @@
       margin-bottom: 18px;
     }
 
-    .form-input {
+    .modal-box input {
       width: 100%;
       padding: 13px;
-      margin-bottom: 10px;
       border: 1px solid var(--border);
-      border-radius: 11px;
-      outline: 0;
-      background: var(--surface2);
-      color: var(--text);
+      border-radius: 12px;
+      margin-bottom: 10px;
     }
 
-    .primary {
+    .modal-box button {
       width: 100%;
-      border: 0;
       padding: 13px;
-      border-radius: 11px;
+      border: 0;
+      border-radius: 12px;
       background: var(--primary);
       color: white;
-      font-weight: 700;
-      margin-top: 5px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 8px;
     }
 
     .google {
-      background: white;
-      color: #111;
-      margin-bottom: 10px;
+      background: #111827 !important;
     }
 
     .close {
-      float: right;
-      border: 0;
-      background: transparent;
-      color: var(--muted);
-      font-size: 22px;
+      background: #eaecf0 !important;
+      color: #101828 !important;
     }
 
-    .status {
+    #message {
       margin-top: 12px;
       font-size: 13px;
       color: var(--muted);
+      min-height: 20px;
     }
 
-    @media(max-width:750px) {
+    @media (max-width: 800px) {
       .grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
       }
 
       .footer-grid {
         grid-template-columns: 1fr;
       }
+    }
 
+    @media (max-width: 560px) {
       .hero {
-        padding-top: 50px;
+        padding-top: 48px;
       }
 
-      .nav .brand span {
-        display: none;
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .search-box button {
+        padding: 13px;
       }
     }
   </style>
@@ -396,17 +413,16 @@
 
 <header>
   <div class="container nav">
+    <a href="#" class="logo">Shaheen <span>Hub</span></a>
 
-    <div class="brand">
-      <div class="logo">🦅</div>
-      <span>Shaheen Hub</span>
-    </div>
+    <nav class="nav-links">
+      <a href="#tools">Tools</a>
+      <a href="#productivity">Productivity</a>
+      <a href="#learning">Learning</a>
+      <a href="#knowledge">Knowledge</a>
+    </nav>
 
-    <div class="nav-actions">
-      <button class="icon-btn" id="themeBtn">☀️</button>
-      <button class="auth-btn" id="openAuth">Sign In</button>
-    </div>
-
+    <button class="auth-btn" id="openAuth">Sign in</button>
   </div>
 </header>
 
@@ -415,17 +431,15 @@
   <section class="hero">
     <div class="container">
 
-      <div class="badge">THE DIGITAL SUPER HUB</div>
+      <div class="badge">One place for everyday digital needs</div>
 
       <h1>
-        One Hub.<br>
-        <span class="gradient">Endless Possibilities.</span>
+        Welcome to <span>Shaheen Hub</span>
       </h1>
 
       <p>
-        Discover useful digital tools, productivity features,
-        learning resources, creative utilities and everyday solutions
-        — all in one powerful platform.
+        Useful digital tools, productivity resources, learning,
+        creativity and knowledge — brought together in one simple platform.
       </p>
 
       <div class="search-box">
@@ -433,73 +447,199 @@
           id="search"
           type="search"
           placeholder="Search Shaheen Hub..."
-          aria-label="Search Shaheen Hub">
-        <button onclick="searchSite()">Search</button>
+          aria-label="Search Shaheen Hub"
+        >
+        <button onclick="searchCards()">Search</button>
       </div>
 
     </div>
   </section>
 
+  <!-- AdSense Auto Ads can automatically place ads.
+       Do not click your own ads. -->
+
   <div class="container">
-
-    <div class="ad-slot">
-      <!-- AdSense Auto Ads may appear here or elsewhere according to Google's systems. -->
-    </div>
-
-    <section>
-      <div class="section-title">
-        <h2>Explore Shaheen Hub</h2>
-        <p>Useful areas designed for everyday digital needs.</p>
-      </div>
-
-      <div class="grid" id="cards">
-
-        <article class="card" data-search="tools utilities calculators converters">
-          <div class="card-icon">🛠️</div>
-          <h3>Smart Tools</h3>
-          <p>Useful online utilities designed to solve everyday digital tasks.</p>
-          <button>Explore</button>
-        </article>
-
-        <article class="card" data-search="productivity tasks planning notes focus">
-          <div class="card-icon">⚡</div>
-          <h3>Productivity</h3>
-          <p>Features designed to help users organize and complete their work.</p>
-          <button>Explore</button>
-        </article>
-
-        <article class="card" data-search="learning education study knowledge">
-          <div class="card-icon">📚</div>
-          <h3>Learning</h3>
-          <p>Useful learning resources and digital study utilities.</p>
-          <button>Explore</button>
-        </article>
-
-        <article class="card" data-search="creative creativity design writing">
-          <div class="card-icon">🎨</div>
-          <h3>Creativity</h3>
-          <p>Digital utilities for writing, ideas and creative workflows.</p>
-          <button>Explore</button>
-        </article>
-
-        <article class="card" data-search="knowledge guides information">
-          <div class="card-icon">🧠</div>
-          <h3>Knowledge</h3>
-          <p>Helpful guides and information created to provide genuine value.</p>
-          <button>Explore</button>
-        </article>
-
-        <article class="card" data-search="discover popular new features">
-          <div class="card-icon">🌎</div>
-          <h3>Discover</h3>
-          <p>Find useful features and resources across the Shaheen ecosystem.</p>
-          <button>Explore</button>
-        </article>
-
-      </div>
-    </section>
-
+    <div class="ad-space" aria-label="Advertisement"></div>
   </div>
+
+  <section id="tools">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Useful Tools</h2>
+        <p>Practical digital utilities designed for everyday tasks.</p>
+      </div>
+
+      <div class="grid">
+
+        <article class="card" data-search="calculator math numbers">
+          <div class="icon">🧮</div>
+          <h3>Calculators</h3>
+          <p>
+            Quick calculation tools for common everyday mathematical needs.
+          </p>
+          <button onclick="comingSoon('Calculators')">Explore</button>
+        </article>
+
+        <article class="card" data-search="text word counter writing">
+          <div class="icon">📝</div>
+          <h3>Text Tools</h3>
+          <p>
+            Helpful utilities for working with text, words and writing.
+          </p>
+          <button onclick="comingSoon('Text Tools')">Explore</button>
+        </article>
+
+        <article class="card" data-search="time date converter">
+          <div class="icon">⏱️</div>
+          <h3>Everyday Utilities</h3>
+          <p>
+            Simple utilities for common digital and everyday tasks.
+          </p>
+          <button onclick="comingSoon('Everyday Utilities')">Explore</button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="productivity">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Productivity</h2>
+        <p>Resources that can help you organize and work more effectively.</p>
+      </div>
+
+      <div class="grid">
+
+        <article class="card" data-search="productivity planner tasks">
+          <div class="icon">⚡</div>
+          <h3>Productivity</h3>
+          <p>
+            Explore practical ideas and tools for organizing digital work.
+          </p>
+          <button onclick="comingSoon('Productivity')">Explore</button>
+        </article>
+
+        <article class="card" data-search="notes planning organization">
+          <div class="icon">📋</div>
+          <h3>Planning</h3>
+          <p>
+            Helpful resources for planning tasks and managing information.
+          </p>
+          <button onclick="comingSoon('Planning')">Explore</button>
+        </article>
+
+        <article class="card" data-search="workspace digital organization">
+          <div class="icon">💻</div>
+          <h3>Digital Workspace</h3>
+          <p>
+            Discover resources for a cleaner and more useful digital workflow.
+          </p>
+          <button onclick="comingSoon('Digital Workspace')">Explore</button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="learning">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Learning</h2>
+        <p>Educational resources for building useful digital skills.</p>
+      </div>
+
+      <div class="grid">
+
+        <article class="card" data-search="programming coding">
+          <div class="icon">💡</div>
+          <h3>Programming</h3>
+          <p>
+            Learn programming concepts through practical explanations and examples.
+          </p>
+          <button onclick="comingSoon('Programming')">Explore</button>
+        </article>
+
+        <article class="card" data-search="english language">
+          <div class="icon">🌎</div>
+          <h3>Language Learning</h3>
+          <p>
+            Useful resources for improving language and communication skills.
+          </p>
+          <button onclick="comingSoon('Language Learning')">Explore</button>
+        </article>
+
+        <article class="card" data-search="technology education">
+          <div class="icon">🎓</div>
+          <h3>Digital Skills</h3>
+          <p>
+            Build practical knowledge for today's digital world.
+          </p>
+          <button onclick="comingSoon('Digital Skills')">Explore</button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="knowledge">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Knowledge</h2>
+        <p>Useful information explained clearly and simply.</p>
+      </div>
+
+      <div class="grid">
+
+        <article class="card" data-search="technology knowledge">
+          <div class="icon">🔎</div>
+          <h3>Technology</h3>
+          <p>
+            Understand useful technology concepts and digital trends.
+          </p>
+          <button onclick="comingSoon('Technology')">Explore</button>
+        </article>
+
+        <article class="card" data-search="guides tutorials">
+          <div class="icon">📚</div>
+          <h3>Guides</h3>
+          <p>
+            Practical guides designed to answer common digital questions.
+          </p>
+          <button onclick="comingSoon('Guides')">Explore</button>
+        </article>
+
+        <article class="card" data-search="discover information">
+          <div class="icon">🌐</div>
+          <h3>Discover</h3>
+          <p>
+            Find useful ideas, resources and information in one place.
+          </p>
+          <button onclick="comingSoon('Discover')">Explore</button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="info">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Shaheen Hub</h2>
+      </div>
+
+      <p>
+        Shaheen Hub is being developed as a useful digital platform
+        combining practical tools, productivity resources, learning,
+        creativity and knowledge. Our goal is to make useful digital
+        resources easier to discover and use from one place.
+      </p>
+    </div>
+  </section>
 
 </main>
 
@@ -507,31 +647,31 @@
   <div class="container footer-grid">
 
     <div>
-      <h3>🦅 Shaheen Hub</h3>
+      <h3>Shaheen Hub</h3>
       <p>
-        A user-first digital platform built around useful tools,
-        productivity, learning, creativity and everyday needs.
+        Useful digital tools, learning resources and everyday knowledge
+        in one platform.
       </p>
     </div>
 
     <div>
-      <h4>Platform</h4>
-      <a href="/">Home</a>
+      <h3>Platform</h3>
       <a href="#tools">Tools</a>
+      <a href="#productivity">Productivity</a>
       <a href="#learning">Learning</a>
+      <a href="#knowledge">Knowledge</a>
     </div>
 
     <div>
-      <h4>Information</h4>
-      <a href="#about">About Us</a>
-      <a href="#privacy">Privacy Policy</a>
-      <a href="#terms">Terms</a>
+      <h3>Information</h3>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#terms">Terms</a>
     </div>
 
   </div>
 </footer>
-
 
 <!-- Authentication Modal -->
 
@@ -539,64 +679,72 @@
 
   <div class="modal-box">
 
-    <button class="close" id="closeAuth">×</button>
-
     <h2>Welcome to Shaheen Hub</h2>
 
-    <p id="authDescription">
-      Sign in to personalize your Shaheen Hub experience.
+    <p id="authStatus">
+      Sign in to access your account.
     </p>
 
-    <button class="primary google" id="googleBtn">
+    <button class="google" id="googleLogin">
       Continue with Google
     </button>
 
+    <div style="text-align:center;margin:15px 0;color:#98a2b3;">
+      or
+    </div>
+
     <input
-      class="form-input"
       id="email"
       type="email"
-      placeholder="Email address">
+      placeholder="Email address"
+      autocomplete="email"
+    >
 
     <input
-      class="form-input"
       id="password"
       type="password"
-      placeholder="Password">
+      placeholder="Password"
+      autocomplete="current-password"
+    >
 
-    <button class="primary" id="emailBtn">
-      Sign In / Create Account
+    <button id="emailLogin">
+      Sign in with Email
     </button>
 
-    <button
-      class="primary"
-      id="resetBtn"
-      style="background:transparent;color:var(--primary2);">
+    <button id="createAccount">
+      Create Account
+    </button>
+
+    <button id="resetPassword">
       Forgot Password?
     </button>
 
-    <div class="status" id="authStatus"></div>
+    <button class="close" id="closeAuth">
+      Close
+    </button>
+
+    <div id="message"></div>
 
   </div>
 
 </div>
 
-
 <script type="module">
 
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
   import {
     getAuth,
     GoogleAuthProvider,
     signInWithPopup,
     signInWithRedirect,
-    getRedirectResult,
-    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
     sendPasswordResetEmail,
-    onAuthStateChanged,
-    signOut
+    signOut,
+    onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
 
 
@@ -617,55 +765,67 @@
 
 
   const modal = document.getElementById("authModal");
-  const status = document.getElementById("authStatus");
   const openAuth = document.getElementById("openAuth");
+  const closeAuth = document.getElementById("closeAuth");
+  const googleLogin = document.getElementById("googleLogin");
+  const emailLogin = document.getElementById("emailLogin");
+  const createAccount = document.getElementById("createAccount");
+  const resetPassword = document.getElementById("resetPassword");
+
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
+
+  const message = document.getElementById("message");
 
 
-  function showStatus(message) {
-    status.textContent = message;
+  function showMessage(text) {
+    message.textContent = text;
   }
 
 
-  document.getElementById("openAuth").onclick = () => {
-    modal.classList.add("active");
+  openAuth.onclick = () => {
+    modal.classList.add("show");
   };
 
 
-  document.getElementById("closeAuth").onclick = () => {
-    modal.classList.remove("active");
+  closeAuth.onclick = () => {
+    modal.classList.remove("show");
+    showMessage("");
   };
 
 
-  /*
-   * Google Sign-In
-   *
-   * Popup is attempted first.
-   * If the browser blocks popup, redirect authentication is used.
-   */
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.classList.remove("show");
+    }
+  });
 
-  document.getElementById("googleBtn").onclick = async () => {
 
-    showStatus("Connecting to Google...");
+  googleLogin.onclick = async () => {
+
+    showMessage("Opening Google sign-in...");
 
     try {
 
       await signInWithPopup(auth, provider);
 
-    } catch (error) {
+      showMessage("Signed in successfully.");
 
-      console.log(error);
+    } catch (error) {
 
       if (
         error.code === "auth/popup-blocked" ||
-        error.code === "auth/popup-cancelled"
+        error.code === "auth/popup-closed-by-user"
       ) {
 
-        await signInWithRedirect(auth, provider);
+        try {
+          await signInWithRedirect(auth, provider);
+        } catch (redirectError) {
+          showMessage(redirectError.message);
+        }
 
       } else {
-
-        showStatus(error.message);
-
+        showMessage(error.message);
       }
 
     }
@@ -673,136 +833,92 @@
   };
 
 
-  /*
-   * Handle redirect result.
-   */
+  emailLogin.onclick = async () => {
 
-  getRedirectResult(auth)
-    .then((result) => {
+    const userEmail = email.value.trim();
+    const userPassword = password.value;
 
-      if (result && result.user) {
-        showStatus("Successfully signed in.");
-      }
-
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-
-  /*
-   * Email authentication.
-   *
-   * Existing account -> Sign In
-   * New account -> Create Account
-   */
-
-  document.getElementById("emailBtn").onclick = async () => {
-
-    const email =
-      document.getElementById("email").value.trim();
-
-    const password =
-      document.getElementById("password").value;
-
-    if (!email || !password) {
-
-      showStatus("Please enter your email and password.");
+    if (!userEmail || !userPassword) {
+      showMessage("Enter your email and password.");
       return;
-
     }
-
-    if (password.length < 6) {
-
-      showStatus("Password must contain at least 6 characters.");
-      return;
-
-    }
-
-    showStatus("Checking your account...");
 
     try {
 
       await signInWithEmailAndPassword(
         auth,
-        email,
-        password
+        userEmail,
+        userPassword
       );
 
-      showStatus("Signed in successfully.");
+      showMessage("Signed in successfully.");
 
     } catch (error) {
 
-      /*
-       * If the account does not exist,
-       * offer account creation.
-       */
-
-      if (error.code === "auth/user-not-found") {
-
-        try {
-
-          await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-          showStatus("Account created successfully.");
-
-        } catch (createError) {
-
-          showStatus(createError.message);
-
-        }
-
-      } else {
-
-        showStatus(error.message);
-
-      }
+      showMessage(error.message);
 
     }
 
   };
 
 
-  /*
-   * Password reset
-   */
+  createAccount.onclick = async () => {
 
-  document.getElementById("resetBtn").onclick = async () => {
+    const userEmail = email.value.trim();
+    const userPassword = password.value;
 
-    const email =
-      document.getElementById("email").value.trim();
-
-    if (!email) {
-
-      showStatus("Enter your email first.");
+    if (!userEmail || !userPassword) {
+      showMessage("Enter an email and password.");
       return;
+    }
 
+    if (userPassword.length < 6) {
+      showMessage("Password must contain at least 6 characters.");
+      return;
     }
 
     try {
 
-      await sendPasswordResetEmail(auth, email);
-
-      showStatus(
-        "Password reset email sent. Check your inbox."
+      await createUserWithEmailAndPassword(
+        auth,
+        userEmail,
+        userPassword
       );
+
+      showMessage("Account created successfully.");
 
     } catch (error) {
 
-      showStatus(error.message);
+      showMessage(error.message);
 
     }
 
   };
 
 
-  /*
-   * Authentication state
-   */
+  resetPassword.onclick = async () => {
+
+    const userEmail = email.value.trim();
+
+    if (!userEmail) {
+      showMessage("Enter your email address first.");
+      return;
+    }
+
+    try {
+
+      await sendPasswordResetEmail(auth, userEmail);
+
+      showMessage("Password reset email sent.");
+
+    } catch (error) {
+
+      showMessage(error.message);
+
+    }
+
+  };
+
 
   onAuthStateChanged(auth, (user) => {
 
@@ -810,84 +926,55 @@
 
       openAuth.textContent = "Account";
 
-      showStatus(
-        `Signed in as ${user.email || user.displayName || "User"}`
-      );
+      document.getElementById("authStatus").textContent =
+        "Signed in as " + (user.email || "Google user");
 
     } else {
 
-      openAuth.textContent = "Sign In";
+      openAuth.textContent = "Sign in";
+
+      document.getElementById("authStatus").textContent =
+        "Sign in to access your account.";
 
     }
 
   });
 
 
-  /*
-   * Expose sign-out helper.
-   */
-
-  window.shaheenSignOut = async () => {
-
-    await signOut(auth);
-
-    modal.classList.remove("active");
-
-  };
-
-</script>
-
-
-<script>
-
-  /* Theme */
-
-  const themeBtn =
-    document.getElementById("themeBtn");
-
-  themeBtn.onclick = () => {
-
-    document.body.classList.toggle("light");
-
-    themeBtn.textContent =
-      document.body.classList.contains("light")
-        ? "🌙"
-        : "☀️";
-
-  };
-
-
-  /* Search */
-
-  function searchSite() {
+  window.searchCards = function () {
 
     const query =
-      document.getElementById("search")
-      .value
-      .toLowerCase()
-      .trim();
+      document.getElementById("search").value
+      .trim()
+      .toLowerCase();
 
     const cards =
       document.querySelectorAll(".card");
 
     cards.forEach(card => {
 
-      const content =
-        card.dataset.search.toLowerCase();
+      const text =
+        (card.innerText + " " + card.dataset.search)
+        .toLowerCase();
 
       card.style.display =
-        !query || content.includes(query)
-          ? ""
-          : "none";
+        !query || text.includes(query)
+        ? ""
+        : "none";
 
     });
 
-  }
+  };
 
 
-  document
-    .getElementById("search")
-    .addEventListener("input", searchSite);
+  window.comingSoon = function (name) {
+
+    alert(
+      name +
+      " is part of the Shaheen Hub tool system and will be added as a real working feature."
+    );
+
+  };
 
 </script>
 

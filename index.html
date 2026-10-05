@@ -2,11 +2,894 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shaheen Hub</title>
+
+  <meta name="description"
+        content="Shaheen Hub is an all-in-one digital platform for useful tools, productivity, learning, creativity, and everyday digital needs.">
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#07111f">
+
+  <link rel="canonical" href="https://shaheen-hub.vercel.app/">
+
+  <title>Shaheen Hub — Your Digital Super Hub</title>
+
+  <!-- Google AdSense -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2057536839831582"
+    crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #07111f;
+      --surface: #0d1b2e;
+      --surface2: #13243b;
+      --text: #ffffff;
+      --muted: #9fb0c5;
+      --primary: #1677ff;
+      --primary2: #00cfff;
+      --border: rgba(255,255,255,.09);
+      --shadow: 0 15px 45px rgba(0,0,0,.25);
+    }
+
+    body.light {
+      --bg: #f5f8fc;
+      --surface: #ffffff;
+      --surface2: #edf3fa;
+      --text: #101828;
+      --muted: #667085;
+      --border: rgba(16,24,40,.09);
+      --shadow: 0 15px 40px rgba(16,24,40,.08);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: .25s;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 30px));
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(7,17,31,.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    body.light header {
+      background: rgba(255,255,255,.86);
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg,var(--primary),var(--primary2));
+      color: white;
+      font-size: 21px;
+      box-shadow: 0 8px 25px rgba(0,150,255,.25);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn,
+    .auth-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 9px 13px;
+    }
+
+    .auth-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 75px 0 45px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(22,119,255,.12);
+      color: var(--primary2);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 8vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg,var(--primary2),#ffffff,var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .search-box {
+      max-width: 680px;
+      margin: 30px auto 0;
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 7px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 13px;
+    }
+
+    .search-box button {
+      border: 0;
+      border-radius: 11px;
+      padding: 0 18px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 35px 0;
+    }
+
+    .section-title {
+      margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+      font-size: 28px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 15px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      transition: .2s;
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,207,255,.35);
+    }
+
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin-bottom: 5px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card button {
+      margin-top: 17px;
+      border: 0;
+      background: var(--surface2);
+      color: var(--text);
+      padding: 9px 13px;
+      border-radius: 10px;
+    }
+
+    .ad-slot {
+      min-height: 90px;
+      margin: 25px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    footer p,
+    footer a {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer a {
+      display: block;
+      margin-top: 7px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--primary2);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,.7);
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: grid;
+    }
+
+    .modal-box {
+      width: min(430px,100%);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-box h2 {
+      margin-bottom: 8px;
+    }
+
+    .modal-box p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      outline: 0;
+      background: var(--surface2);
+      color: var(--text);
+    }
+
+    .primary {
+      width: 100%;
+      border: 0;
+      padding: 13px;
+      border-radius: 11px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+
+    .google {
+      background: white;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .close {
+      float: right;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 22px;
+    }
+
+    .status {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media(max-width:750px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 50px;
+      }
+
+      .nav .brand span {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Shaheen Hub</h1>
-  <p>Welcome to Shaheen Hub.</p>
+
+<header>
+  <div class="container nav">
+
+    <div class="brand">
+      <div class="logo">🦅</div>
+      <span>Shaheen Hub</span>
+    </div>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeBtn">☀️</button>
+      <button class="auth-btn" id="openAuth">Sign In</button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+
+      <div class="badge">THE DIGITAL SUPER HUB</div>
+
+      <h1>
+        One Hub.<br>
+        <span class="gradient">Endless Possibilities.</span>
+      </h1>
+
+      <p>
+        Discover useful digital tools, productivity features,
+        learning resources, creative utilities and everyday solutions
+        — all in one powerful platform.
+      </p>
+
+      <div class="search-box">
+        <input
+          id="search"
+          type="search"
+          placeholder="Search Shaheen Hub..."
+          aria-label="Search Shaheen Hub">
+        <button onclick="searchSite()">Search</button>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="ad-slot">
+      <!-- AdSense Auto Ads may appear here or elsewhere according to Google's systems. -->
+    </div>
+
+    <section>
+      <div class="section-title">
+        <h2>Explore Shaheen Hub</h2>
+        <p>Useful areas designed for everyday digital needs.</p>
+      </div>
+
+      <div class="grid" id="cards">
+
+        <article class="card" data-search="tools utilities calculators converters">
+          <div class="card-icon">🛠️</div>
+          <h3>Smart Tools</h3>
+          <p>Useful online utilities designed to solve everyday digital tasks.</p>
+          <button>Explore</button>
+        </article>
+
+        <article class="card" data-search="productivity tasks planning notes focus">
+          <div class="card-icon">⚡</div>
+          <h3>Productivity</h3>
+          <p>Features designed to help users organize and complete their work.</p>
+          <button>Explore</button>
+        </article>
+
+        <article class="card" data-search="learning education study knowledge">
+          <div class="card-icon">📚</div>
+          <h3>Learning</h3>
+          <p>Useful learning resources and digital study utilities.</p>
+          <button>Explore</button>
+        </article>
+
+        <article class="card" data-search="creative creativity design writing">
+          <div class="card-icon">🎨</div>
+          <h3>Creativity</h3>
+          <p>Digital utilities for writing, ideas and creative workflows.</p>
+          <button>Explore</button>
+        </article>
+
+        <article class="card" data-search="knowledge guides information">
+          <div class="card-icon">🧠</div>
+          <h3>Knowledge</h3>
+          <p>Helpful guides and information created to provide genuine value.</p>
+          <button>Explore</button>
+        </article>
+
+        <article class="card" data-search="discover popular new features">
+          <div class="card-icon">🌎</div>
+          <h3>Discover</h3>
+          <p>Find useful features and resources across the Shaheen ecosystem.</p>
+          <button>Explore</button>
+        </article>
+
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="container footer-grid">
+
+    <div>
+      <h3>🦅 Shaheen Hub</h3>
+      <p>
+        A user-first digital platform built around useful tools,
+        productivity, learning, creativity and everyday needs.
+      </p>
+    </div>
+
+    <div>
+      <h4>Platform</h4>
+      <a href="/">Home</a>
+      <a href="#tools">Tools</a>
+      <a href="#learning">Learning</a>
+    </div>
+
+    <div>
+      <h4>Information</h4>
+      <a href="#about">About Us</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- Authentication Modal -->
+
+<div class="modal" id="authModal">
+
+  <div class="modal-box">
+
+    <button class="close" id="closeAuth">×</button>
+
+    <h2>Welcome to Shaheen Hub</h2>
+
+    <p id="authDescription">
+      Sign in to personalize your Shaheen Hub experience.
+    </p>
+
+    <button class="primary google" id="googleBtn">
+      Continue with Google
+    </button>
+
+    <input
+      class="form-input"
+      id="email"
+      type="email"
+      placeholder="Email address">
+
+    <input
+      class="form-input"
+      id="password"
+      type="password"
+      placeholder="Password">
+
+    <button class="primary" id="emailBtn">
+      Sign In / Create Account
+    </button>
+
+    <button
+      class="primary"
+      id="resetBtn"
+      style="background:transparent;color:var(--primary2);">
+      Forgot Password?
+    </button>
+
+    <div class="status" id="authStatus"></div>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDrG_SvsNsdDzgVq5YHePH_sG4qhrxS_jg",
+    authDomain: "shaheen-hub.firebaseapp.com",
+    projectId: "shaheen-hub",
+    storageBucket: "shaheen-hub.firebasestorage.app",
+    messagingSenderId: "71806997098",
+    appId: "1:71806997098:web:39f803af322634ebd1b013",
+    measurementId: "G-1QBNWCZNC6"
+  };
+
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+
+  const modal = document.getElementById("authModal");
+  const status = document.getElementById("authStatus");
+  const openAuth = document.getElementById("openAuth");
+
+
+  function showStatus(message) {
+    status.textContent = message;
+  }
+
+
+  document.getElementById("openAuth").onclick = () => {
+    modal.classList.add("active");
+  };
+
+
+  document.getElementById("closeAuth").onclick = () => {
+    modal.classList.remove("active");
+  };
+
+
+  /*
+   * Google Sign-In
+   *
+   * Popup is attempted first.
+   * If the browser blocks popup, redirect authentication is used.
+   */
+
+  document.getElementById("googleBtn").onclick = async () => {
+
+    showStatus("Connecting to Google...");
+
+    try {
+
+      await signInWithPopup(auth, provider);
+
+    } catch (error) {
+
+      console.log(error);
+
+      if (
+        error.code === "auth/popup-blocked" ||
+        error.code === "auth/popup-cancelled"
+      ) {
+
+        await signInWithRedirect(auth, provider);
+
+      } else {
+
+        showStatus(error.message);
+
+      }
+
+    }
+
+  };
+
+
+  /*
+   * Handle redirect result.
+   */
+
+  getRedirectResult(auth)
+    .then((result) => {
+
+      if (result && result.user) {
+        showStatus("Successfully signed in.");
+      }
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+
+  /*
+   * Email authentication.
+   *
+   * Existing account -> Sign In
+   * New account -> Create Account
+   */
+
+  document.getElementById("emailBtn").onclick = async () => {
+
+    const email =
+      document.getElementById("email").value.trim();
+
+    const password =
+      document.getElementById("password").value;
+
+    if (!email || !password) {
+
+      showStatus("Please enter your email and password.");
+      return;
+
+    }
+
+    if (password.length < 6) {
+
+      showStatus("Password must contain at least 6 characters.");
+      return;
+
+    }
+
+    showStatus("Checking your account...");
+
+    try {
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      showStatus("Signed in successfully.");
+
+    } catch (error) {
+
+      /*
+       * If the account does not exist,
+       * offer account creation.
+       */
+
+      if (error.code === "auth/user-not-found") {
+
+        try {
+
+          await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+          showStatus("Account created successfully.");
+
+        } catch (createError) {
+
+          showStatus(createError.message);
+
+        }
+
+      } else {
+
+        showStatus(error.message);
+
+      }
+
+    }
+
+  };
+
+
+  /*
+   * Password reset
+   */
+
+  document.getElementById("resetBtn").onclick = async () => {
+
+    const email =
+      document.getElementById("email").value.trim();
+
+    if (!email) {
+
+      showStatus("Enter your email first.");
+      return;
+
+    }
+
+    try {
+
+      await sendPasswordResetEmail(auth, email);
+
+      showStatus(
+        "Password reset email sent. Check your inbox."
+      );
+
+    } catch (error) {
+
+      showStatus(error.message);
+
+    }
+
+  };
+
+
+  /*
+   * Authentication state
+   */
+
+  onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+      openAuth.textContent = "Account";
+
+      showStatus(
+        `Signed in as ${user.email || user.displayName || "User"}`
+      );
+
+    } else {
+
+      openAuth.textContent = "Sign In";
+
+    }
+
+  });
+
+
+  /*
+   * Expose sign-out helper.
+   */
+
+  window.shaheenSignOut = async () => {
+
+    await signOut(auth);
+
+    modal.classList.remove("active");
+
+  };
+
+</script>
+
+
+<script>
+
+  /* Theme */
+
+  const themeBtn =
+    document.getElementById("themeBtn");
+
+  themeBtn.onclick = () => {
+
+    document.body.classList.toggle("light");
+
+    themeBtn.textContent =
+      document.body.classList.contains("light")
+        ? "🌙"
+        : "☀️";
+
+  };
+
+
+  /* Search */
+
+  function searchSite() {
+
+    const query =
+      document.getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+    const cards =
+      document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+      const content =
+        card.dataset.search.toLowerCase();
+
+      card.style.display =
+        !query || content.includes(query)
+          ? ""
+          : "none";
+
+    });
+
+  }
+
+
+  document
+    .getElementById("search")
+    .addEventListener("input", searchSite);
+
+</script>
+
 </body>
 </html>

@@ -1,1995 +1,2080 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#0b63f6">
+<meta name="theme-color" content="#0866ff">
 
-  <meta name="description"
-        content="Shaheen Recall helps you save, organize, search and revisit the useful things you find online and in your everyday life.">
+<meta name="description"
+content="Shaheen Recall helps you save, organize, search and revisit links, notes, tasks and ideas in one simple place.">
 
-  <meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow">
 
-  <title>Shaheen Recall — Save It. Find It. Remember It.</title>
+<title>Shaheen Recall — Save. Find. Remember.</title>
 
-  <!-- Google AdSense / Auto Ads -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2057536839831582"
-    crossorigin="anonymous"></script>
+<!-- Google AdSense -->
+<script async
+src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2057536839831582"
+crossorigin="anonymous"></script>
 
-  <!-- SoftwareApplication structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["WebApplication", "SoftwareApplication"],
-    "name": "Shaheen Recall",
-    "description": "A privacy-first web app for saving, organizing, searching and revisiting useful links, notes, ideas and tasks.",
-    "applicationCategory": "ProductivityApplication",
-    "operatingSystem": "Any",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+<style>
+:root{
+  --bg:#f5f7fb;
+  --card:#fff;
+  --text:#101828;
+  --muted:#667085;
+  --primary:#0866ff;
+  --primary2:#00cfff;
+  --border:#e4e7ec;
+  --soft:#edf4ff;
+  --danger:#d92d20;
+  --shadow:0 12px 35px rgba(16,24,40,.08);
+}
+
+[data-theme="dark"]{
+  --bg:#09111f;
+  --card:#111c2d;
+  --text:#f5f7fa;
+  --muted:#98a2b3;
+  --border:#26364d;
+  --soft:#172944;
+  --shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:
+  system-ui,-apple-system,BlinkMacSystemFont,
+  "Segoe UI",sans-serif;
+  line-height:1.55;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+  width:min(1120px,calc(100% - 28px));
+  margin:auto;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+
+.nav{
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  font-size:19px;
+}
+
+.logo{
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-weight:1000;
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary2)
+  );
+}
+
+.nav-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.icon-btn{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+}
+
+.lang{
+  height:40px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  padding:0 9px;
+}
+
+/* HERO */
+
+.hero{
+  padding:70px 0 30px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:35px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-flex;
+  padding:7px 12px;
+  border-radius:999px;
+  background:var(--soft);
+  color:var(--primary);
+  font-weight:800;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:clamp(42px,7vw,75px);
+  line-height:.98;
+  letter-spacing:-3px;
+}
+
+.gradient{
+  background:
+  linear-gradient(
+    90deg,
+    var(--primary),
+    var(--primary2)
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  max-width:680px;
+  margin:22px 0;
+  color:var(--muted);
+  font-size:18px;
+}
+
+.hero-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:28px;
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+
+.demo{
+  background:var(--soft);
+  border-radius:15px;
+  padding:14px;
+  margin-top:10px;
+}
+
+.demo strong{
+  display:block;
+  font-size:14px;
+}
+
+.demo span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* BUTTONS */
+
+.primary{
+  border:0;
+  background:var(--primary);
+  color:white;
+  border-radius:13px;
+  padding:12px 17px;
+  font-weight:800;
+}
+
+.primary:hover{
+  filter:brightness(.94);
+}
+
+.secondary{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:13px;
+  padding:11px 15px;
+  font-weight:700;
+}
+
+/* SEARCH */
+
+.search{
+  padding:15px 0;
+}
+
+.search-box{
+  position:relative;
+}
+
+.search-box span{
+  position:absolute;
+  left:17px;
+  top:15px;
+  font-size:20px;
+}
+
+.search-box input{
+  width:100%;
+  height:56px;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:0 18px 0 48px;
+  background:var(--card);
+  color:var(--text);
+  outline:none;
+  box-shadow:var(--shadow);
+}
+
+.search-box input:focus{
+  border-color:var(--primary);
+}
+
+/* APP */
+
+.app{
+  padding:20px 0 70px;
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:17px;
+}
+
+.toolbar h2{
+  font-size:28px;
+}
+
+.filters{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:9px;
+}
+
+.filter{
+  flex:0 0 auto;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--muted);
+  padding:8px 13px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13px;
+}
+
+.filter.active{
+  color:white;
+  background:var(--primary);
+  border-color:var(--primary);
+}
+
+/* ADS */
+
+.ad-space{
+  min-height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* CARDS */
+
+.grid{
+  display:grid;
+  grid-template-columns:
+  repeat(3,minmax(0,1fr));
+  gap:15px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 5px 18px rgba(16,24,40,.04);
+}
+
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.type{
+  color:var(--primary);
+  background:var(--soft);
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.star{
+  border:0;
+  background:transparent;
+  color:#f5b301;
+  font-size:20px;
+}
+
+.card h3{
+  margin-top:13px;
+  font-size:17px;
+  word-break:break-word;
+}
+
+.card p{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:13px;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.url{
+  display:block;
+  color:var(--primary);
+  font-size:12px;
+  margin-top:9px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:11px;
+}
+
+.tag{
+  background:var(--soft);
+  color:var(--muted);
+  border-radius:7px;
+  padding:4px 7px;
+  font-size:11px;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:
+  repeat(4,1fr);
+  gap:5px;
+  margin-top:15px;
+  padding-top:12px;
+  border-top:1px solid var(--border);
+}
+
+.small{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:9px;
+  padding:7px 4px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.danger{
+  color:var(--danger);
+}
+
+/* EMPTY */
+
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:65px 20px;
+  border:1px dashed var(--border);
+  border-radius:22px;
+  color:var(--muted);
+}
+
+.empty-icon{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.empty h3{
+  color:var(--text);
+  margin-bottom:5px;
+}
+
+/* INFO */
+
+.info{
+  padding:65px 0;
+  border-top:1px solid var(--border);
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(3,1fr);
+  gap:16px;
+  margin-top:20px;
+}
+
+.info-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+}
+
+.info-card p{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:7px;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--border);
+  padding:35px 0;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:30px;
+}
+
+footer p,
+footer a{
+  color:var(--muted);
+  font-size:13px;
+}
+
+footer a{
+  display:block;
+  margin:6px 0;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(0,0,0,.58);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(600px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:var(--card);
+  border-radius:24px;
+  border:1px solid var(--border);
+  padding:23px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--soft);
+  color:var(--text);
+}
+
+label{
+  display:block;
+  margin:12px 0 6px;
+  font-size:13px;
+  font-weight:800;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  background:var(--card);
+  color:var(--text);
+  outline:none;
+}
+
+textarea{
+  min-height:125px;
+  resize:vertical;
+}
+
+.modal-actions{
+  display:flex;
+  gap:9px;
+  margin-top:18px;
+}
+
+.modal-actions>*{
+  flex:1;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  z-index:300;
+  transform:translate(-50%,120px);
+  opacity:0;
+  background:#101828;
+  color:white;
+  padding:12px 17px;
+  border-radius:12px;
+  font-size:13px;
+  transition:.25s;
+  max-width:calc(100% - 30px);
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  .hero-grid{
+    grid-template-columns:1fr;
   }
-  </script>
 
-  <style>
-    :root {
-      --bg: #f5f7fb;
-      --surface: #ffffff;
-      --surface-2: #eef3fb;
-      --text: #101828;
-      --muted: #667085;
-      --primary: #0b63f6;
-      --primary-dark: #084fc4;
-      --cyan: #00cfff;
-      --border: #dfe5ee;
-      --danger: #d92d20;
-      --success: #039855;
-      --shadow: 0 12px 35px rgba(16,24,40,.08);
-      --radius: 20px;
-    }
-
-    [data-theme="dark"] {
-      --bg: #0b1220;
-      --surface: #111a2b;
-      --surface-2: #18243a;
-      --text: #f2f4f7;
-      --muted: #98a2b3;
-      --border: #26344d;
-      --shadow: 0 12px 35px rgba(0,0,0,.25);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      line-height: 1.55;
-    }
-
-    button,
-    input,
-    textarea,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 30px));
-      margin: auto;
-    }
-
-    /* HEADER */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid var(--border);
-      background: color-mix(
-        in srgb,
-        var(--surface) 92%,
-        transparent
-      );
-      backdrop-filter: blur(18px);
-    }
-
-    .nav {
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: -.5px;
-    }
-
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
-      color: white;
-      background:
-        linear-gradient(
-          135deg,
-          var(--primary),
-          var(--cyan)
-        );
-      box-shadow:
-        0 7px 20px rgba(11,99,246,.25);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .icon-btn {
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      border-radius: 12px;
-    }
-
-    /* HERO */
-
-    .hero {
-      padding: 65px 0 30px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: var(--surface-2);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: .98;
-      letter-spacing: -3px;
-      max-width: 760px;
-    }
-
-    .gradient-text {
-      background:
-        linear-gradient(
-          90deg,
-          var(--primary),
-          var(--cyan)
-        );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-description {
-      color: var(--muted);
-      font-size: 18px;
-      max-width: 680px;
-      margin: 22px 0;
-    }
-
-    .hero-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 25px;
-      box-shadow: var(--shadow);
-    }
-
-    .mini-item {
-      padding: 14px;
-      border-radius: 15px;
-      background: var(--surface-2);
-      margin-top: 10px;
-    }
-
-    .mini-item strong {
-      display: block;
-      font-size: 14px;
-    }
-
-    .mini-item span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* SEARCH */
-
-    .search-wrap {
-      margin: 25px 0;
-      position: relative;
-    }
-
-    .search-input {
-      width: 100%;
-      height: 58px;
-      padding: 0 18px 0 50px;
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      background: var(--surface);
-      color: var(--text);
-      outline: none;
-      box-shadow: var(--shadow);
-    }
-
-    .search-input:focus {
-      border-color: var(--primary);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 18px;
-      top: 17px;
-      font-size: 20px;
-    }
-
-    /* APP */
-
-    .app {
-      padding: 20px 0 70px;
-    }
-
-    .toolbar {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .toolbar h2 {
-      font-size: 28px;
-      letter-spacing: -.8px;
-    }
-
-    .primary-btn {
-      border: 0;
-      background: var(--primary);
-      color: white;
-      padding: 12px 17px;
-      border-radius: 13px;
-      font-weight: 800;
-    }
-
-    .primary-btn:hover {
-      background: var(--primary-dark);
-    }
-
-    .secondary-btn {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      padding: 11px 15px;
-      border-radius: 13px;
-      font-weight: 700;
-    }
-
-    .filters {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 18px;
-    }
-
-    .filter {
-      flex: 0 0 auto;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--muted);
-      padding: 9px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .filter.active {
-      color: white;
-      background: var(--primary);
-      border-color: var(--primary);
-    }
-
-    /* ITEMS */
-
-    .items {
-      display: grid;
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-      gap: 15px;
-    }
-
-    .item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 5px 18px rgba(16,24,40,.04);
-      transition: transform .18s ease;
-    }
-
-    .item:hover {
-      transform: translateY(-2px);
-    }
-
-    .item-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .type {
-      font-size: 11px;
-      font-weight: 900;
-      color: var(--primary);
-      background: var(--surface-2);
-      border-radius: 999px;
-      padding: 5px 9px;
-      text-transform: uppercase;
-      letter-spacing: .4px;
-    }
-
-    .star {
-      border: 0;
-      background: transparent;
-      color: #f5b301;
-      font-size: 20px;
-    }
-
-    .item h3 {
-      font-size: 17px;
-      margin-bottom: 6px;
-      word-break: break-word;
-    }
-
-    .item p {
-      color: var(--muted);
-      font-size: 13px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    .item-url {
-      display: block;
-      margin-top: 10px;
-      color: var(--primary);
-      font-size: 12px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 12px;
-    }
-
-    .tag {
-      padding: 4px 8px;
-      border-radius: 7px;
-      background: var(--surface-2);
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .item-actions {
-      display: flex;
-      gap: 7px;
-      margin-top: 15px;
-      border-top: 1px solid var(--border);
-      padding-top: 13px;
-    }
-
-    .small-btn {
-      flex: 1;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      border-radius: 10px;
-      padding: 8px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .small-btn.danger {
-      color: var(--danger);
-    }
-
-    /* EMPTY */
-
-    .empty {
-      text-align: center;
-      padding: 65px 20px;
-      border: 1px dashed var(--border);
-      border-radius: 22px;
-      color: var(--muted);
-      grid-column: 1/-1;
-    }
-
-    .empty-icon {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
-
-    .empty h3 {
-      color: var(--text);
-      margin-bottom: 5px;
-    }
-
-    /* AD */
-
-    .ad-slot {
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 15px 0 25px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    /* INFO */
-
-    .info {
-      padding: 70px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .info-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 23px;
-    }
-
-    .info-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .info-card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 35px 0;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 30px;
-    }
-
-    footer p,
-    footer a {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    footer h3 {
-      margin-bottom: 8px;
-    }
-
-    footer a {
-      display: block;
-      margin: 6px 0;
-    }
-
-    /* MODAL */
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      background: rgba(0,0,0,.55);
-      padding: 18px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-box {
-      width: min(600px, 100%);
-      max-height: 90vh;
-      overflow: auto;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 23px;
-    }
-
-    .modal-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .close {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--surface-2);
-      color: var(--text);
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
-      margin: 12px 0 6px;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      background: var(--surface);
-      color: var(--text);
-      outline: none;
-    }
-
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 9px;
-      margin-top: 18px;
-    }
-
-    .modal-actions button {
-      flex: 1;
-    }
-
-    /* TOAST */
-
-    .toast {
-      position: fixed;
-      bottom: 22px;
-      left: 50%;
-      transform: translate(-50%, 120px);
-      background: #101828;
-      color: white;
-      padding: 12px 17px;
-      border-radius: 12px;
-      z-index: 200;
-      opacity: 0;
-      transition: .25s;
-      font-size: 13px;
-      max-width: calc(100% - 30px);
-      text-align: center;
-    }
-
-    .toast.show {
-      transform: translate(-50%, 0);
-      opacity: 1;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 850px) {
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .items {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 580px) {
-
-      .container {
-        width: min(100% - 22px, 1120px);
-      }
-
-      .hero {
-        padding-top: 40px;
-      }
-
-      .hero h1 {
-        letter-spacing: -2px;
-      }
-
-      .items {
-        grid-template-columns: 1fr;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .toolbar {
-        align-items: flex-start;
-      }
-
-      .toolbar h2 {
-        font-size: 23px;
-      }
-
-      .primary-btn {
-        padding: 10px 12px;
-      }
-    }
-  </style>
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:600px){
+
+  .container{
+    width:calc(100% - 22px);
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .nav .brand span:last-child{
+    font-size:16px;
+  }
+
+  h1{
+    letter-spacing:-2px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="container nav">
+<div class="container nav">
 
-    <a class="brand" href="#">
-      <span class="brand-icon">S</span>
-      <span>Shaheen Recall</span>
-    </a>
+<a class="brand" href="#">
+  <span class="logo">S</span>
+  <span>Shaheen Recall</span>
+</a>
 
-    <div class="nav-actions">
+<div class="nav-actions">
 
-      <button
+<select id="language"
+        class="lang"
+        aria-label="Language">
+
+<option value="en">English</option>
+<option value="ur">اردو</option>
+<option value="hi">हिन्दी</option>
+<option value="ar">العربية</option>
+<option value="zh">中文</option>
+<option value="fr">Français</option>
+<option value="es">Español</option>
+<option value="de">Deutsch</option>
+
+</select>
+
+<button id="theme"
         class="icon-btn"
-        id="themeBtn"
-        aria-label="Toggle theme">
-        🌙
-      </button>
+        aria-label="Theme">
+🌙
+</button>
 
-      <button
-        class="primary-btn"
-        id="headerAdd">
-        + Add
-      </button>
-
-    </div>
-  </div>
+</div>
+</div>
 </header>
 
 
 <main>
 
-  <!-- HERO -->
+<section class="hero">
 
-  <section class="hero">
+<div class="container hero-grid">
 
-    <div class="container hero-grid">
+<div>
 
-      <div>
+<div class="badge"
+     data-i18n="badge">
+✦ Your personal digital inbox
+</div>
 
-        <div class="eyebrow">
-          ✦ Your personal digital inbox
-        </div>
+<h1>
+<span data-i18n="hero1">Save it.</span>
+<br>
+<span class="gradient"
+      data-i18n="hero2">
+Find it.
+</span>
+<br>
+<span data-i18n="hero3">
+Remember it.
+</span>
+</h1>
 
-        <h1>
-          Save it.
-          <span class="gradient-text">
-            Find it.
-          </span>
-          Remember it.
-        </h1>
+<p data-i18n="heroDesc">
+Save useful links, notes, tasks and ideas in one
+simple place and find them again when you need them.
+</p>
 
-        <p class="hero-description">
-          A simple place for the useful things you discover:
-          links, notes, ideas, tasks and reminders.
-          Keep your digital life searchable instead of scattered.
-        </p>
+<button id="heroAdd"
+        class="primary"
+        data-i18n="capture">
+Capture something
+</button>
 
-        <button
-          class="primary-btn"
-          id="heroAdd">
-          Capture something
-        </button>
+</div>
 
-      </div>
 
+<div class="hero-card">
 
-      <div class="hero-card">
+<strong data-i18n="demoTitle">
+One place. Less digital clutter.
+</strong>
 
-        <strong>
-          One inbox. Less digital clutter.
-        </strong>
+<div class="demo">
+<strong>🔗 <span data-i18n="demo1">
+Useful tutorial
+</span></strong>
+<span data-i18n="savedLink">
+Saved as a link
+</span>
+</div>
 
-        <div class="mini-item">
-          <strong>🎥 A useful tutorial</strong>
-          <span>Saved as a link</span>
-        </div>
+<div class="demo">
+<strong>💡 <span data-i18n="demo2">
+Website idea
+</span></strong>
+<span data-i18n="savedNote">
+Saved as a note
+</span>
+</div>
+
+<div class="demo">
+<strong>✓ <span data-i18n="demo3">
+Finish research
+</span></strong>
+<span data-i18n="savedTask">
+Saved as a task
+</span>
+</div>
 
-        <div class="mini-item">
-          <strong>💡 Website idea</strong>
-          <span>Saved as a note</span>
-        </div>
+</div>
 
-        <div class="mini-item">
-          <strong>✓ Finish project research</strong>
-          <span>Saved as a task</span>
-        </div>
+</div>
+</section>
 
-      </div>
 
-    </div>
+<section class="search">
 
-  </section>
+<div class="container">
 
+<div class="search-box">
 
-  <div class="container">
+<span>⌕</span>
 
-    <!-- SEARCH -->
+<input
+id="search"
+type="search"
+data-i18n-placeholder="search"
+placeholder="Search your saved things...">
 
-    <div class="search-wrap">
+</div>
 
-      <span class="search-icon">⌕</span>
+</div>
 
-      <input
-        class="search-input"
-        id="searchInput"
-        type="search"
-        placeholder="Search your saved things..."
-        autocomplete="off">
+</section>
 
-    </div>
 
-  </div>
+<section class="app">
 
+<div class="container">
 
-  <!-- MAIN APP -->
+<div class="toolbar">
 
-  <section class="app">
+<h2 data-i18n="yourRecall">
+Your Recall
+</h2>
 
-    <div class="container">
+<button
+id="add"
+class="primary"
+data-i18n="capture">
+Capture
+</button>
+
+</div>
 
-      <div class="toolbar">
+
+<div class="filters">
 
-        <div>
-          <h2>Your Recall</h2>
-        </div>
+<button class="filter active"
+data-filter="all"
+data-i18n="all">
+All
+</button>
 
-        <button
-          class="primary-btn"
-          id="addBtn">
-          + Capture
-        </button>
+<button class="filter"
+data-filter="link"
+data-i18n="links">
+🔗 Links
+</button>
 
-      </div>
+<button class="filter"
+data-filter="note"
+data-i18n="notes">
+📝 Notes
+</button>
 
+<button class="filter"
+data-filter="task"
+data-i18n="tasks">
+✓ Tasks
+</button>
 
-      <div class="filters">
+<button class="filter"
+data-filter="idea"
+data-i18n="ideas">
+💡 Ideas
+</button>
 
-        <button
-          class="filter active"
-          data-filter="all">
-          All
-        </button>
+<button class="filter"
+data-filter="favorite"
+data-i18n="favorites">
+★ Favorites
+</button>
 
-        <button
-          class="filter"
-          data-filter="link">
-          🔗 Links
-        </button>
+<button class="filter"
+data-filter="archive"
+data-i18n="archive">
+Archive
+</button>
 
-        <button
-          class="filter"
-          data-filter="note">
-          📝 Notes
-        </button>
+</div>
 
-        <button
-          class="filter"
-          data-filter="task">
-          ✓ Tasks
-        </button>
 
-        <button
-          class="filter"
-          data-filter="idea">
-          💡 Ideas
-        </button>
+<div class="ad-space"
+aria-label="Advertisement">
+</div>
 
-        <button
-          class="filter"
-          data-filter="favorite">
-          ★ Favorites
-        </button>
 
-        <button
-          class="filter"
-          data-filter="archive">
-          Archive
-        </button>
+<div id="cards"
+     class="grid">
+</div>
 
-      </div>
+</div>
 
+</section>
 
-      <!-- AdSense Auto Ads can use this content area.
-           Do not encourage ad clicks. -->
 
-      <div
-        class="ad-slot"
-        aria-label="Advertisement">
-      </div>
+<section class="info">
 
+<div class="container">
 
-      <div
-        class="items"
-        id="items">
-      </div>
+<h2 data-i18n="why">
+Why Shaheen Recall?
+</h2>
 
-    </div>
+<div class="info-grid">
 
-  </section>
+<div class="info-card">
+<h3 data-i18n="onePlace">
+One place
+</h3>
+<p data-i18n="onePlaceDesc">
+Keep useful links, notes, ideas and tasks together.
+</p>
+</div>
 
+<div class="info-card">
+<h3 data-i18n="fastSearch">
+Fast search
+</h3>
+<p data-i18n="fastSearchDesc">
+Search titles, descriptions, URLs and tags instantly.
+</p>
+</div>
 
-  <!-- ORIGINAL CONTENT -->
+<div class="info-card">
+<h3 data-i18n="privacy">
+Privacy first
+</h3>
+<p data-i18n="privacyDesc">
+Your saved items stay in this browser in this version.
+</p>
+</div>
 
-  <section class="info">
+</div>
 
-    <div class="container">
+</div>
+</section>
 
-      <div class="section-title">
-        <h2>Why Shaheen Recall?</h2>
-        <p>
-          Designed around a simple everyday problem:
-          useful information is easy to save but surprisingly hard
-          to find again.
-        </p>
-      </div>
 
+<section class="info">
 
-      <div class="info-grid">
+<div class="container">
 
-        <article class="info-card">
-          <h3>One place</h3>
-          <p>
-            Keep useful links, notes, ideas and tasks together
-            instead of spreading them across multiple apps.
-          </p>
-        </article>
+<h2 data-i18n="about">
+About Shaheen Recall
+</h2>
 
+<p style="max-width:850px;color:var(--muted);margin-top:10px"
+data-i18n="aboutDesc">
+Shaheen Recall is a lightweight productivity web app
+for saving and retrieving useful information without
+unnecessary complexity.
+</p>
 
-        <article class="info-card">
-          <h3>Fast search</h3>
-          <p>
-            Search your saved title, description, URL and tags
-            from one search box.
-          </p>
-        </article>
+</div>
+</section>
 
 
-        <article class="info-card">
-          <h3>Privacy first</h3>
-          <p>
-            This first version stores your saved items locally
-            in your browser. Nothing is uploaded to a server
-            by this page.
-          </p>
-        </article>
+<section class="info">
 
-      </div>
+<div class="container">
 
-    </div>
+<h2 data-i18n="privacyTitle">
+Privacy
+</h2>
 
-  </section>
+<p style="max-width:850px;color:var(--muted);margin-top:10px"
+data-i18n="privacyFull">
+This version stores Recall data locally in your browser.
+The page does not upload your saved items to a Shaheen
+Recall database.
+</p>
 
-
-  <!-- ABOUT -->
-
-  <section class="info" id="about">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>About Shaheen Recall</h2>
-      </div>
-
-      <p style="max-width:850px;color:var(--muted);">
-        Shaheen Recall is a lightweight productivity web application
-        designed to help people capture useful information and retrieve
-        it later. The first version focuses on speed, simplicity and
-        local privacy rather than unnecessary complexity.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- PRIVACY -->
-
-  <section class="info" id="privacy">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Privacy</h2>
-      </div>
-
-      <p style="max-width:850px;color:var(--muted);">
-        In this version, saved Recall items are stored locally in your
-        browser using localStorage. They are not sent to a Shaheen Recall
-        database by this page. If cloud synchronization is introduced in
-        a future version, this privacy information will be updated before
-        that functionality is enabled.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- TERMS -->
-
-  <section class="info" id="terms">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Terms</h2>
-      </div>
-
-      <p style="max-width:850px;color:var(--muted);">
-        Shaheen Recall is provided as a productivity utility. Users are
-        responsible for the information they save and for ensuring that
-        saved links and material are used lawfully and appropriately.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- CONTACT -->
-
-  <section class="info" id="contact">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Contact</h2>
-      </div>
-
-      <p style="max-width:850px;color:var(--muted);">
-        For questions, feedback or reports about Shaheen Recall,
-        use the official contact address published with the deployed
-        website.
-      </p>
-
-    </div>
-
-  </section>
+</div>
+</section>
 
 </main>
 
 
 <footer>
 
-  <div class="container footer-grid">
+<div class="container footer-grid">
 
-    <div>
+<div>
 
-      <div class="brand">
-        <span class="brand-icon">S</span>
-        <span>Shaheen Recall</span>
-      </div>
+<div class="brand">
+<span class="logo">S</span>
+<span>Shaheen Recall</span>
+</div>
 
-      <p style="margin-top:10px;">
-        Save useful things once. Find them when you need them.
-      </p>
-
-    </div>
-
-
-    <div>
-
-      <h3>Explore</h3>
-
-      <a href="#">Home</a>
-      <a href="#about">About</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#terms">Terms</a>
-
-    </div>
-
-
-    <div>
-
-      <h3>Product</h3>
-
-      <a href="#about">How it works</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#contact">Contact</a>
-
-    </div>
-
-  </div>
-
-</footer>
-
-
-<!-- ADD / EDIT MODAL -->
-
-<div
-  class="modal"
-  id="captureModal"
-  role="dialog"
-  aria-modal="true">
-
-  <div class="modal-box">
-
-    <div class="modal-head">
-
-      <div>
-        <h2 id="modalTitle">
-          Capture something
-        </h2>
-
-        <p style="color:var(--muted);font-size:13px;">
-          Save it now. Organize it later.
-        </p>
-      </div>
-
-      <button
-        class="close"
-        id="closeModal">
-        ×
-      </button>
-
-    </div>
-
-
-    <label for="itemType">
-      Type
-    </label>
-
-    <select id="itemType">
-
-      <option value="link">
-        🔗 Link
-      </option>
-
-      <option value="note">
-        📝 Note
-      </option>
-
-      <option value="task">
-        ✓ Task
-      </option>
-
-      <option value="idea">
-        💡 Idea
-      </option>
-
-    </select>
-
-
-    <label for="itemTitle">
-      Title
-    </label>
-
-    <input
-      id="itemTitle"
-      type="text"
-      maxlength="150"
-      placeholder="What is this?">
-
-
-    <label for="itemContent">
-      Note / description
-    </label>
-
-    <textarea
-      id="itemContent"
-      maxlength="3000"
-      placeholder="Add useful context..."></textarea>
-
-
-    <label for="itemUrl">
-      Link (optional)
-    </label>
-
-    <input
-      id="itemUrl"
-      type="url"
-      placeholder="https://example.com">
-
-
-    <label for="itemTags">
-      Tags
-    </label>
-
-    <input
-      id="itemTags"
-      type="text"
-      maxlength="200"
-      placeholder="coding, research, idea">
-
-
-    <div class="modal-actions">
-
-      <button
-        class="secondary-btn"
-        id="cancelBtn">
-        Cancel
-      </button>
-
-      <button
-        class="primary-btn"
-        id="saveBtn">
-        Save Recall
-      </button>
-
-    </div>
-
-  </div>
+<p style="margin-top:9px"
+data-i18n="footer">
+Save useful things once. Find them when you need them.
+</p>
 
 </div>
 
 
-<div
-  class="toast"
-  id="toast">
+<div>
+
+<h3 data-i18n="explore">
+Explore
+</h3>
+
+<a href="#" data-i18n="home">
+Home
+</a>
+
+<a href="#" data-i18n="about">
+About
+</a>
+
+<a href="#" data-i18n="privacy">
+Privacy
+</a>
+
+</div>
+
+
+<div>
+
+<h3 data-i18n="product">
+Product
+</h3>
+
+<a href="#"
+id="export"
+data-i18n="export">
+Export data
+</a>
+
+<a href="#"
+id="import"
+data-i18n="import">
+Import data
+</a>
+
+<a href="#"
+id="clear"
+data-i18n="clear">
+Clear data
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- CAPTURE MODAL -->
+
+<div id="modal"
+     class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<div>
+<h2 id="modalTitle"
+data-i18n="captureTitle">
+Capture something
+</h2>
+</div>
+
+<button id="close"
+class="close">
+×
+</button>
+
+</div>
+
+
+<label data-i18n="type">
+Type
+</label>
+
+<select id="type">
+
+<option value="link"
+data-i18n="links">
+🔗 Links
+</option>
+
+<option value="note"
+data-i18n="notes">
+📝 Notes
+</option>
+
+<option value="task"
+data-i18n="tasks">
+✓ Tasks
+</option>
+
+<option value="idea"
+data-i18n="ideas">
+💡 Ideas
+</option>
+
+</select>
+
+
+<label data-i18n="title">
+Title
+</label>
+
+<input
+id="title"
+maxlength="150"
+data-i18n-placeholder="titlePlaceholder"
+placeholder="What is this?">
+
+
+<label data-i18n="description">
+Description
+</label>
+
+<textarea
+id="description"
+maxlength="3000"
+data-i18n-placeholder="descriptionPlaceholder"
+placeholder="Add useful context..."></textarea>
+
+
+<label data-i18n="link">
+Link
+</label>
+
+<input
+id="url"
+type="url"
+data-i18n-placeholder="urlPlaceholder"
+placeholder="https://example.com">
+
+
+<label data-i18n="tags">
+Tags
+</label>
+
+<input
+id="tags"
+data-i18n-placeholder="tagsPlaceholder"
+placeholder="coding, research, idea">
+
+
+<div class="modal-actions">
+
+<button id="cancel"
+class="secondary"
+data-i18n="cancel">
+Cancel
+</button>
+
+<button id="save"
+class="primary"
+data-i18n="save">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<div id="toast"
+class="toast">
 </div>
 
 
 <script>
 
-  /* ============================
-     SHAHEEN RECALL
-     Local-first data engine
-     ============================ */
+/* =========================
+   SHAHEEN RECALL ENGINE
+========================= */
+
+const KEY="shaheen_recall_v3";
+const THEME="shaheen_theme";
+const LANG="shaheen_language";
+
+let data=JSON.parse(
+  localStorage.getItem(KEY)||"[]"
+);
+
+let filter="all";
+let editing=null;
 
 
-  const STORAGE_KEY =
-    "shaheen_recall_items_v1";
+/* =========================
+   TRANSLATIONS
+========================= */
 
-  const THEME_KEY =
-    "shaheen_recall_theme_v1";
+const T={
+
+en:{
+badge:"✦ Your personal digital inbox",
+hero1:"Save it.",
+hero2:"Find it.",
+hero3:"Remember it.",
+heroDesc:"Save useful links, notes, tasks and ideas in one simple place and find them again when you need them.",
+capture:"Capture",
+demoTitle:"One place. Less digital clutter.",
+demo1:"Useful tutorial",
+demo2:"Website idea",
+demo3:"Finish research",
+savedLink:"Saved as a link",
+savedNote:"Saved as a note",
+savedTask:"Saved as a task",
+search:"Search your saved things...",
+yourRecall:"Your Recall",
+all:"All",
+links:"🔗 Links",
+notes:"📝 Notes",
+tasks:"✓ Tasks",
+ideas:"💡 Ideas",
+favorites:"★ Favorites",
+archive:"Archive",
+why:"Why Shaheen Recall?",
+onePlace:"One place",
+onePlaceDesc:"Keep useful links, notes, ideas and tasks together.",
+fastSearch:"Fast search",
+fastSearchDesc:"Search titles, descriptions, URLs and tags instantly.",
+privacy:"Privacy first",
+privacyDesc:"Your saved items stay in this browser in this version.",
+about:"About Shaheen Recall",
+aboutDesc:"Shaheen Recall is a lightweight productivity web app for saving and retrieving useful information without unnecessary complexity.",
+privacyTitle:"Privacy",
+privacyFull:"This version stores Recall data locally in your browser. The page does not upload your saved items to a Shaheen Recall database.",
+footer:"Save useful things once. Find them when you need them.",
+explore:"Explore",
+home:"Home",
+product:"Product",
+export:"Export data",
+import:"Import data",
+clear:"Clear data",
+captureTitle:"Capture something",
+type:"Type",
+title:"Title",
+description:"Description",
+link:"Link",
+tags:"Tags",
+cancel:"Cancel",
+save:"Save",
+titlePlaceholder:"What is this?",
+descriptionPlaceholder:"Add useful context...",
+urlPlaceholder:"https://example.com",
+tagsPlaceholder:"coding, research, idea",
+empty:"Your Recall is empty",
+emptyDesc:"Save your first useful link, note, idea or task.",
+nothing:"Nothing found",
+nothingDesc:"Try another search or filter.",
+saved:"Saved.",
+updated:"Updated.",
+deleted:"Deleted.",
+required:"Please enter a title.",
+copied:"Copied.",
+archived:"Archived.",
+restored:"Restored.",
+cleared:"All data cleared.",
+invalid:"Please enter a valid URL.",
+exported:"Data exported.",
+imported:"Data imported."
+},
+
+ur:{
+badge:"✦ آپ کا ذاتی ڈیجیٹل ان باکس",
+hero1:"محفوظ کریں۔",
+hero2:"تلاش کریں۔",
+hero3:"یاد رکھیں۔",
+heroDesc:"لنکس، نوٹس، کام اور آئیڈیاز ایک جگہ محفوظ کریں اور ضرورت کے وقت دوبارہ تلاش کریں۔",
+capture:"محفوظ کریں",
+demoTitle:"ایک جگہ۔ کم ڈیجیٹل بکھراؤ۔",
+demo1:"کارآمد ٹیوٹوریل",
+demo2:"ویب سائٹ آئیڈیا",
+demo3:"ریسرچ مکمل کریں",
+savedLink:"لنک کے طور پر محفوظ",
+savedNote:"نوٹ کے طور پر محفوظ",
+savedTask:"کام کے طور پر محفوظ",
+search:"اپنی محفوظ چیزیں تلاش کریں...",
+yourRecall:"آپ کا Recall",
+all:"سب",
+links:"🔗 لنکس",
+notes:"📝 نوٹس",
+tasks:"✓ کام",
+ideas:"💡 آئیڈیاز",
+favorites:"★ پسندیدہ",
+archive:"آرکائیو",
+why:"Shaheen Recall کیوں؟",
+onePlace:"ایک جگہ",
+onePlaceDesc:"لنکس، نوٹس، آئیڈیاز اور کام ایک جگہ رکھیں۔",
+fastSearch:"تیز سرچ",
+fastSearchDesc:"عنوان، تفصیل، لنک اور ٹیگز فوراً تلاش کریں۔",
+privacy:"پرائیویسی پہلے",
+privacyDesc:"اس ورژن میں آپ کی چیزیں اسی براؤزر میں محفوظ رہتی ہیں۔",
+about:"Shaheen Recall کے بارے میں",
+aboutDesc:"Shaheen Recall ایک سادہ productivity web app ہے جو مفید معلومات محفوظ اور دوبارہ تلاش کرنے میں مدد دیتی ہے۔",
+privacyTitle:"پرائیویسی",
+privacyFull:"اس ورژن میں Recall کا ڈیٹا آپ کے براؤزر میں مقامی طور پر محفوظ ہوتا ہے۔",
+footer:"مفید چیز ایک بار محفوظ کریں اور ضرورت کے وقت دوبارہ تلاش کریں۔",
+explore:"دیکھیں",
+home:"ہوم",
+product:"پروڈکٹ",
+export:"ڈیٹا ایکسپورٹ",
+import:"ڈیٹا امپورٹ",
+clear:"ڈیٹا صاف کریں",
+captureTitle:"کچھ محفوظ کریں",
+type:"قسم",
+title:"عنوان",
+description:"تفصیل",
+link:"لنک",
+tags:"ٹیگز",
+cancel:"منسوخ",
+save:"محفوظ کریں",
+titlePlaceholder:"یہ کیا ہے؟",
+descriptionPlaceholder:"مزید معلومات...",
+urlPlaceholder:"https://example.com",
+tagsPlaceholder:"coding, research, idea",
+empty:"آپ کا Recall خالی ہے",
+emptyDesc:"اپنا پہلا لنک، نوٹ، آئیڈیا یا کام محفوظ کریں۔",
+nothing:"کچھ نہیں ملا",
+nothingDesc:"دوسری سرچ یا فلٹر آزمائیں۔",
+saved:"محفوظ ہوگیا۔",
+updated:"اپڈیٹ ہوگیا۔",
+deleted:"حذف ہوگیا۔",
+required:"براہ کرم عنوان لکھیں۔",
+copied:"کاپی ہوگیا۔",
+archived:"آرکائیو ہوگیا۔",
+restored:"بحال ہوگیا۔",
+cleared:"تمام ڈیٹا صاف ہوگیا۔",
+invalid:"درست URL لکھیں۔",
+exported:"ڈیٹا ایکسپورٹ ہوگیا۔",
+imported:"ڈیٹا امپورٹ ہوگیا۔"
+},
+
+hi:{
+badge:"✦ आपका निजी डिजिटल इनबॉक्स",
+hero1:"सेव करें।",
+hero2:"ढूँढें।",
+hero3:"याद रखें।",
+heroDesc:"लिंक, नोट्स, काम और आइडिया एक जगह सेव करें और जरूरत पर फिर खोजें।",
+capture:"सेव करें",
+demoTitle:"एक जगह। कम डिजिटल बिखराव।",
+demo1:"उपयोगी ट्यूटोरियल",
+demo2:"वेबसाइट आइडिया",
+demo3:"रिसर्च पूरी करें",
+savedLink:"लिंक के रूप में सेव",
+savedNote:"नोट के रूप में सेव",
+savedTask:"काम के रूप में सेव",
+search:"अपनी सेव की गई चीजें खोजें...",
+yourRecall:"आपका Recall",
+all:"सब",
+links:"🔗 लिंक",
+notes:"📝 नोट्स",
+tasks:"✓ काम",
+ideas:"💡 आइडिया",
+favorites:"★ पसंदीदा",
+archive:"आर्काइव",
+why:"Shaheen Recall क्यों?",
+onePlace:"एक जगह",
+onePlaceDesc:"लिंक, नोट्स, आइडिया और काम एक जगह रखें।",
+fastSearch:"तेज सर्च",
+fastSearchDesc:"टाइटल, विवरण, लिंक और टैग तुरंत खोजें।",
+privacy:"प्राइवेसी पहले",
+privacyDesc:"इस वर्जन में आपकी चीजें इसी ब्राउज़र में रहती हैं।",
+about:"Shaheen Recall के बारे में",
+aboutDesc:"Shaheen Recall उपयोगी जानकारी सेव और फिर खोजने के लिए एक सरल productivity web app है।",
+privacyTitle:"प्राइवेसी",
+privacyFull:"इस वर्जन में Recall डेटा आपके ब्राउज़र में स्थानीय रूप से सेव होता है।",
+footer:"उपयोगी चीज एक बार सेव करें और जरूरत पर फिर खोजें।",
+explore:"एक्सप्लोर",
+home:"होम",
+product:"प्रोडक्ट",
+export:"डेटा एक्सपोर्ट",
+import:"डेटा इम्पोर्ट",
+clear:"डेटा साफ करें",
+captureTitle:"कुछ सेव करें",
+type:"प्रकार",
+title:"शीर्षक",
+description:"विवरण",
+link:"लिंक",
+tags:"टैग",
+cancel:"रद्द करें",
+save:"सेव करें",
+titlePlaceholder:"यह क्या है?",
+descriptionPlaceholder:"जानकारी जोड़ें...",
+urlPlaceholder:"https://example.com",
+tagsPlaceholder:"coding, research, idea",
+empty:"आपका Recall खाली है",
+emptyDesc:"अपना पहला लिंक, नोट, आइडिया या काम सेव करें।",
+nothing:"कुछ नहीं मिला",
+nothingDesc:"दूसरी सर्च या फ़िल्टर आज़माएँ।",
+saved:"सेव हो गया।",
+updated:"अपडेट हो गया।",
+deleted:"डिलीट हो गया।",
+required:"कृपया शीर्षक लिखें।",
+copied:"कॉपी हो गया।",
+archived:"आर्काइव हो गया।",
+restored:"वापस आ गया।",
+cleared:"सारा डेटा साफ हो गया।",
+invalid:"सही URL डालें।",
+exported:"डेटा एक्सपोर्ट हो गया।",
+imported:"डेटा इम्पोर्ट हो गया।"
+},
+
+fr:{
+badge:"✦ Votre boîte de réception numérique",
+hero1:"Enregistrez.",
+hero2:"Trouvez.",
+hero3:"Retenez.",
+heroDesc:"Enregistrez vos liens, notes, tâches et idées au même endroit.",
+capture:"Enregistrer",
+demoTitle:"Un endroit. Moins de désordre.",
+demo1:"Tutoriel utile",
+demo2:"Idée de site",
+demo3:"Terminer la recherche",
+savedLink:"Enregistré comme lien",
+savedNote:"Enregistré comme note",
+savedTask:"Enregistré comme tâche",
+search:"Rechercher vos éléments...",
+yourRecall:"Votre Recall",
+all:"Tout",
+links:"🔗 Liens",
+notes:"📝 Notes",
+tasks:"✓ Tâches",
+ideas:"💡 Idées",
+favorites:"★ Favoris",
+archive:"Archive",
+why:"Pourquoi Shaheen Recall ?",
+onePlace:"Un seul endroit",
+onePlaceDesc:"Gardez vos liens, notes, idées et tâches ensemble.",
+fastSearch:"Recherche rapide",
+fastSearchDesc:"Recherchez instantanément les titres, descriptions, liens et tags.",
+privacy:"Confidentialité",
+privacyDesc:"Dans cette version, vos éléments restent dans ce navigateur.",
+about:"À propos",
+aboutDesc:"Shaheen Recall est une application simple pour enregistrer et retrouver les informations utiles.",
+privacyTitle:"Confidentialité",
+privacyFull:"Cette version conserve les données Recall localement dans votre navigateur.",
+footer:"Enregistrez une chose utile et retrouvez-la quand vous en avez besoin.",
+explore:"Explorer",
+home:"Accueil",
+product:"Produit",
+export:"Exporter",
+import:"Importer",
+clear:"Effacer",
+captureTitle:"Enregistrer",
+type:"Type",
+title:"Titre",
+description:"Description",
+link:"Lien",
+tags:"Tags",
+cancel:"Annuler",
+save:"Enregistrer",
+titlePlaceholder:"Qu'est-ce que c'est ?",
+descriptionPlaceholder:"Ajoutez du contexte...",
+urlPlaceholder:"https://example.com",
+tagsPlaceholder:"coding, research, idea",
+empty:"Votre Recall est vide",
+emptyDesc:"Enregistrez votre premier lien, note, idée ou tâche.",
+nothing:"Aucun résultat",
+nothingDesc:"Essayez une autre recherche ou un autre filtre.",
+saved:"Enregistré.",
+updated:"Mis à jour.",
+deleted:"Supprimé.",
+required:"Veuillez saisir un titre.",
+copied:"Copié.",
+archived:"Archivé.",
+restored:"Restauré.",
+cleared:"Données effacées.",
+invalid:"URL invalide.",
+exported:"Données exportées.",
+imported:"Données importées."
+}
+
+};
 
 
-  let items =
-    JSON.parse(
-      localStorage.getItem(STORAGE_KEY) || "[]"
+/* Fill missing languages from English
+   so UI never breaks. */
+
+["ar","zh","es","de"].forEach(
+  lang=>{
+    T[lang]={
+      ...T.en,
+      ...(T[lang]||{})
+    };
+  }
+);
+
+
+let language=
+localStorage.getItem(LANG)||"en";
+
+
+function tr(key){
+  return T[language][key]||T.en[key]||key;
+}
+
+
+function applyLanguage(){
+
+  document.documentElement.lang=language;
+
+  document.querySelectorAll(
+    "[data-i18n]"
+  ).forEach(el=>{
+    el.textContent=tr(
+      el.dataset.i18n
+    );
+  });
+
+  document.querySelectorAll(
+    "[data-i18n-placeholder]"
+  ).forEach(el=>{
+    el.placeholder=tr(
+      el.dataset.i18nPlaceholder
+    );
+  });
+
+  document.title=
+    language==="en"
+    ? "Shaheen Recall — Save. Find. Remember."
+    : "Shaheen Recall";
+
+  render();
+}
+
+
+document.getElementById(
+  "language"
+).value=language;
+
+
+document.getElementById(
+  "language"
+).addEventListener(
+  "change",
+  e=>{
+    language=e.target.value;
+    localStorage.setItem(
+      LANG,
+      language
+    );
+    applyLanguage();
+  }
+);
+
+
+/* =========================
+   THEME
+========================= */
+
+const savedTheme=
+localStorage.getItem(THEME);
+
+if(savedTheme==="dark"){
+  document.documentElement
+    .setAttribute(
+      "data-theme",
+      "dark"
+    );
+  document.getElementById(
+    "theme"
+  ).textContent="☀️";
+}
+
+
+document.getElementById(
+  "theme"
+).onclick=()=>{
+
+  const dark=
+    document.documentElement
+      .getAttribute("data-theme")
+      ==="dark";
+
+  if(dark){
+
+    document.documentElement
+      .removeAttribute("data-theme");
+
+    localStorage.removeItem(
+      THEME
     );
 
-  let currentFilter = "all";
+    document.getElementById(
+      "theme"
+    ).textContent="🌙";
 
-  let editingId = null;
+  }else{
 
-
-  const itemsContainer =
-    document.getElementById("items");
-
-  const searchInput =
-    document.getElementById("searchInput");
-
-  const modal =
-    document.getElementById("captureModal");
-
-  const itemType =
-    document.getElementById("itemType");
-
-  const itemTitle =
-    document.getElementById("itemTitle");
-
-  const itemContent =
-    document.getElementById("itemContent");
-
-  const itemUrl =
-    document.getElementById("itemUrl");
-
-  const itemTags =
-    document.getElementById("itemTags");
-
-  const modalTitle =
-    document.getElementById("modalTitle");
-
-  const toast =
-    document.getElementById("toast");
-
-
-  /* ============================
-     UTILITIES
-     ============================ */
-
-
-  function saveData() {
+    document.documentElement
+      .setAttribute(
+        "data-theme",
+        "dark"
+      );
 
     localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(items)
+      THEME,
+      "dark"
     );
 
-  }
-
-
-  function createId() {
-
-    return Date.now().toString(36)
-      + Math.random()
-        .toString(36)
-        .slice(2);
+    document.getElementById(
+      "theme"
+    ).textContent="☀️";
 
   }
 
-
-  function escapeHTML(value) {
-
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-
-  }
+};
 
 
-  function showToast(text) {
+/* =========================
+   ELEMENTS
+========================= */
 
-    toast.textContent = text;
+const modal=
+document.getElementById("modal");
 
-    toast.classList.add("show");
+const title=
+document.getElementById("title");
 
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 2300);
+const description=
+document.getElementById("description");
 
-  }
+const url=
+document.getElementById("url");
 
+const tags=
+document.getElementById("tags");
 
-  function normalizeUrl(url) {
+const type=
+document.getElementById("type");
 
-    if (!url) return "";
+const cards=
+document.getElementById("cards");
 
-    const trimmed = url.trim();
+const search=
+document.getElementById("search");
 
-    if (
-      trimmed.startsWith("http://") ||
-      trimmed.startsWith("https://")
-    ) {
-      return trimmed;
-    }
-
-    return "https://" + trimmed;
-
-  }
-
-
-  /* ============================
-     MODAL
-     ============================ */
+const toast=
+document.getElementById("toast");
 
 
-  function openModal(item = null) {
-
-    modal.classList.add("show");
-
-    if (item) {
-
-      editingId = item.id;
-
-      modalTitle.textContent =
-        "Edit Recall";
-
-      itemType.value =
-        item.type;
-
-      itemTitle.value =
-        item.title;
-
-      itemContent.value =
-        item.content;
-
-      itemUrl.value =
-        item.url;
-
-      itemTags.value =
-        item.tags.join(", ");
-
-    } else {
-
-      editingId = null;
-
-      modalTitle.textContent =
-        "Capture something";
-
-      itemType.value =
-        "link";
-
-      itemTitle.value =
-        "";
-
-      itemContent.value =
-        "";
-
-      itemUrl.value =
-        "";
-
-      itemTags.value =
-        "";
-
-    }
-
-    setTimeout(() => {
-      itemTitle.focus();
-    }, 100);
-
-  }
+function id(){
+  return Date.now().toString(36)+
+  Math.random().toString(36).slice(2);
+}
 
 
-  function closeModal() {
-
-    modal.classList.remove("show");
-
-    editingId = null;
-
-  }
-
-
-  document
-    .getElementById("addBtn")
-    .onclick = () => openModal();
+function saveData(){
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(data)
+  );
+}
 
 
-  document
-    .getElementById("heroAdd")
-    .onclick = () => openModal();
+function toastMessage(text){
 
+  toast.textContent=text;
 
-  document
-    .getElementById("headerAdd")
-    .onclick = () => openModal();
+  toast.classList.add("show");
 
-
-  document
-    .getElementById("closeModal")
-    .onclick = closeModal;
-
-
-  document
-    .getElementById("cancelBtn")
-    .onclick = closeModal;
-
-
-  modal.addEventListener(
-    "click",
-    event => {
-
-      if (event.target === modal) {
-        closeModal();
-      }
-
-    }
+  clearTimeout(
+    toast._timer
   );
 
-
-  /* ============================
-     SAVE
-     ============================ */
-
-
-  document
-    .getElementById("saveBtn")
-    .onclick = () => {
-
-      const title =
-        itemTitle.value.trim();
-
-      const content =
-        itemContent.value.trim();
-
-      const url =
-        normalizeUrl(
-          itemUrl.value.trim()
-        );
-
-      const tags =
-        itemTags.value
-          .split(",")
-          .map(tag => tag.trim().toLowerCase())
-          .filter(Boolean);
-
-
-      if (!title) {
-
-        showToast(
-          "Please enter a title."
-        );
-
-        itemTitle.focus();
-
-        return;
-
-      }
-
-
-      if (
-        url &&
-        !/^https?:\/\/.+/i.test(url)
-      ) {
-
-        showToast(
-          "Please enter a valid link."
-        );
-
-        return;
-
-      }
-
-
-      if (editingId) {
-
-        const index =
-          items.findIndex(
-            item => item.id === editingId
-          );
-
-        if (index !== -1) {
-
-          items[index] = {
-            ...items[index],
-            type: itemType.value,
-            title,
-            content,
-            url,
-            tags,
-            updatedAt: Date.now()
-          };
-
-        }
-
-        showToast("Recall updated.");
-
-      } else {
-
-        items.unshift({
-
-          id: createId(),
-
-          type: itemType.value,
-
-          title,
-
-          content,
-
-          url,
-
-          tags,
-
-          favorite: false,
-
-          archived: false,
-
-          createdAt: Date.now(),
-
-          updatedAt: Date.now()
-
-        });
-
-        showToast("Saved to Recall.");
-
-      }
-
-
-      saveData();
-
-      closeModal();
-
-      render();
-
-    };
-
-
-  /* ============================
-     DELETE
-     ============================ */
-
-
-  function deleteItem(id) {
-
-    const confirmed =
-      confirm(
-        "Delete this saved item?"
+  toast._timer=setTimeout(
+    ()=>{
+      toast.classList.remove(
+        "show"
       );
+    },
+    2200
+  );
+}
 
-    if (!confirmed) return;
 
-    items =
-      items.filter(
-        item => item.id !== id
-      );
+function escape(value){
 
-    saveData();
+  return String(value||"")
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
 
-    render();
+}
 
-    showToast("Deleted.");
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(item=null){
+
+  modal.classList.add("show");
+
+  if(item){
+
+    editing=item.id;
+
+    document.getElementById(
+      "modalTitle"
+    ).textContent=
+      tr("captureTitle");
+
+    type.value=item.type;
+    title.value=item.title;
+    description.value=item.description;
+    url.value=item.url;
+    tags.value=item.tags.join(", ");
+
+  }else{
+
+    editing=null;
+
+    title.value="";
+    description.value="";
+    url.value="";
+    tags.value="";
+    type.value="link";
 
   }
 
+  setTimeout(
+    ()=>title.focus(),
+    100
+  );
+}
 
-  /* ============================
-     FAVORITE
-     ============================ */
+
+function closeModal(){
+  modal.classList.remove("show");
+  editing=null;
+}
 
 
-  function toggleFavorite(id) {
+document.getElementById(
+  "add"
+).onclick=()=>openModal();
 
-    const item =
-      items.find(
-        item => item.id === id
-      );
 
-    if (!item) return;
+document.getElementById(
+  "heroAdd"
+).onclick=()=>openModal();
 
-    item.favorite =
-      !item.favorite;
 
-    saveData();
+document.getElementById(
+  "close"
+).onclick=closeModal;
 
-    render();
 
+document.getElementById(
+  "cancel"
+).onclick=closeModal;
+
+
+modal.onclick=e=>{
+  if(e.target===modal){
+    closeModal();
+  }
+};
+
+
+/* =========================
+   SAVE ITEM
+========================= */
+
+document.getElementById(
+  "save"
+).onclick=()=>{
+
+  const t=title.value.trim();
+  const d=description.value.trim();
+  const rawUrl=url.value.trim();
+
+  if(!t){
+    toastMessage(tr("required"));
+    title.focus();
+    return;
   }
 
+  let finalUrl=rawUrl;
 
-  /* ============================
-     ARCHIVE
-     ============================ */
+  if(rawUrl){
 
+    finalUrl=
+      /^https?:\/\//i.test(rawUrl)
+      ? rawUrl
+      : "https://"+rawUrl;
 
-  function toggleArchive(id) {
-
-    const item =
-      items.find(
-        item => item.id === id
-      );
-
-    if (!item) return;
-
-    item.archived =
-      !item.archived;
-
-    saveData();
-
-    render();
-
-    showToast(
-      item.archived
-        ? "Moved to archive."
-        : "Restored."
-    );
-
-  }
-
-
-  /* ============================
-     COPY
-     ============================ */
-
-
-  async function copyItem(item) {
-
-    const text =
-      [
-        item.title,
-        item.content,
-        item.url
-      ]
-      .filter(Boolean)
-      .join("\n");
-
-    try {
-
-      await navigator.clipboard.writeText(text);
-
-      showToast(
-        "Copied to clipboard."
-      );
-
-    } catch {
-
-      showToast(
-        "Copy is not available in this browser."
-      );
-
+    try{
+      new URL(finalUrl);
+    }catch{
+      toastMessage(tr("invalid"));
+      return;
     }
 
   }
 
 
-  /* ============================
-     FILTER
-     ============================ */
+  const tagList=
+    tags.value
+    .split(",")
+    .map(x=>x.trim().toLowerCase())
+    .filter(Boolean);
 
 
-  document
-    .querySelectorAll(".filter")
-    .forEach(button => {
+  if(editing){
 
-      button.addEventListener(
-        "click",
-        () => {
+    const item=
+      data.find(x=>x.id===editing);
 
-          document
-            .querySelectorAll(".filter")
-            .forEach(btn =>
-              btn.classList.remove("active")
-            );
+    if(item){
 
-          button.classList.add("active");
+      item.type=type.value;
+      item.title=t;
+      item.description=d;
+      item.url=finalUrl;
+      item.tags=tagList;
+      item.updated=Date.now();
 
-          currentFilter =
-            button.dataset.filter;
+    }
 
-          render();
+    toastMessage(tr("updated"));
 
-        }
-      );
+  }else{
+
+    data.unshift({
+
+      id:id(),
+
+      type:type.value,
+
+      title:t,
+
+      description:d,
+
+      url:finalUrl,
+
+      tags:tagList,
+
+      favorite:false,
+
+      archived:false,
+
+      created:Date.now(),
+
+      updated:Date.now()
 
     });
 
-
-  /* ============================
-     SEARCH
-     ============================ */
-
-
-  searchInput.addEventListener(
-    "input",
-    render
-  );
-
-
-  /* ============================
-     FILTER LOGIC
-     ============================ */
-
-
-  function getFilteredItems() {
-
-    const query =
-      searchInput.value
-        .trim()
-        .toLowerCase();
-
-
-    return items.filter(item => {
-
-      let matchesFilter = true;
-
-
-      if (currentFilter === "favorite") {
-
-        matchesFilter =
-          item.favorite &&
-          !item.archived;
-
-      }
-
-      else if (currentFilter === "archive") {
-
-        matchesFilter =
-          item.archived;
-
-      }
-
-      else if (currentFilter !== "all") {
-
-        matchesFilter =
-          item.type === currentFilter &&
-          !item.archived;
-
-      }
-
-      else {
-
-        matchesFilter =
-          !item.archived;
-
-      }
-
-
-      if (!matchesFilter) {
-        return false;
-      }
-
-
-      if (!query) {
-        return true;
-      }
-
-
-      const searchable = [
-
-        item.title,
-
-        item.content,
-
-        item.url,
-
-        item.type,
-
-        ...(item.tags || [])
-
-      ]
-      .join(" ")
-      .toLowerCase();
-
-
-      return searchable.includes(query);
-
-    });
-
+    toastMessage(tr("saved"));
   }
 
 
-  /* ============================
-     RENDER
-     ============================ */
+  saveData();
+  closeModal();
+  render();
+
+};
 
 
-  function render() {
+/* =========================
+   FILTERS
+========================= */
 
-    const filtered =
-      getFilteredItems();
+document.querySelectorAll(
+  ".filter"
+).forEach(button=>{
+
+  button.onclick=()=>{
+
+    document.querySelectorAll(
+      ".filter"
+    ).forEach(
+      x=>x.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    filter=button.dataset.filter;
+
+    render();
+
+  };
+
+});
 
 
-    if (!filtered.length) {
+search.oninput=render;
 
-      itemsContainer.innerHTML = `
 
-        <div class="empty">
+/* =========================
+   RENDER
+========================= */
 
-          <div class="empty-icon">
-            ${items.length ? "🔎" : "📥"}
-          </div>
+function filteredData(){
 
-          <h3>
-            ${
-              items.length
-                ? "Nothing found"
-                : "Your Recall is empty"
-            }
-          </h3>
+  const q=
+    search.value.trim().toLowerCase();
 
-          <p>
-            ${
-              items.length
-                ? "Try another search or filter."
-                : "Save your first useful link, note, idea or task."
-            }
-          </p>
+  return data.filter(item=>{
 
-          ${
-            !items.length
-              ? `
-                <button
-                  class="primary-btn"
-                  style="margin-top:15px"
-                  onclick="openModal()">
-                  + Capture your first item
-                </button>
-              `
-              : ""
-          }
+    let ok=true;
 
+    if(filter==="favorite"){
+      ok=item.favorite&&!item.archived;
+    }
+
+    else if(filter==="archive"){
+      ok=item.archived;
+    }
+
+    else if(filter!=="all"){
+      ok=
+        item.type===filter &&
+        !item.archived;
+    }
+
+    else{
+      ok=!item.archived;
+    }
+
+    if(!ok)return false;
+
+    if(!q)return true;
+
+    const text=[
+      item.title,
+      item.description,
+      item.url,
+      item.type,
+      ...item.tags
+    ].join(" ").toLowerCase();
+
+    return text.includes(q);
+
+  });
+
+}
+
+
+function render(){
+
+  const list=filteredData();
+
+  if(!list.length){
+
+    cards.innerHTML=`
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          ${data.length?"🔎":"📥"}
         </div>
 
-      `;
+        <h3>
+          ${data.length
+            ?tr("nothing")
+            :tr("empty")}
+        </h3>
 
-      return;
+        <p>
+          ${data.length
+            ?tr("nothingDesc")
+            :tr("emptyDesc")}
+        </p>
 
-    }
+        ${
+          !data.length
+          ?`
+          <button
+            class="primary"
+            style="margin-top:15px"
+            onclick="openModal()">
+            ${tr("capture")}
+          </button>
+          `
+          :""
+        }
 
+      </div>
+    `;
 
-    itemsContainer.innerHTML =
-      filtered
-        .map(renderItem)
-        .join("");
-
+    return;
   }
 
 
-  function renderItem(item) {
+  cards.innerHTML=
+    list.map(item=>{
 
-    const icon = {
-
-      link: "🔗",
-
-      note: "📝",
-
-      task: "✓",
-
-      idea: "💡"
-
-    }[item.type] || "📌";
+      const icon={
+        link:"🔗",
+        note:"📝",
+        task:"✓",
+        idea:"💡"
+      }[item.type]||"📌";
 
 
-    const tags =
-      (item.tags || [])
-        .map(
-          tag =>
-            `<span class="tag">#${escapeHTML(tag)}</span>`
-        )
-        .join("");
+      const tagHtml=
+        item.tags.map(
+          x=>`
+          <span class="tag">
+            #${escape(x)}
+          </span>`
+        ).join("");
 
 
-    const url =
-      item.url
-        ? `
-          <a
-            class="item-url"
-            href="${escapeHTML(item.url)}"
-            target="_blank"
-            rel="noopener noreferrer">
-            ${escapeHTML(item.url)}
-          </a>
+      const linkHtml=
+        item.url
+        ?`
+        <a
+          class="url"
+          href="${escape(item.url)}"
+          target="_blank"
+          rel="noopener noreferrer">
+          ${escape(item.url)}
+        </a>
         `
-        : "";
+        :"";
 
 
-    return `
+      return`
 
-      <article class="item">
+      <article class="card">
 
-        <div class="item-top">
+        <div class="card-top">
 
           <span class="type">
-            ${icon} ${escapeHTML(item.type)}
+            ${icon} ${escape(item.type)}
           </span>
 
           <button
             class="star"
-            onclick="toggleFavorite('${item.id}')"
-            aria-label="Favorite">
-
-            ${item.favorite ? "★" : "☆"}
-
+            onclick="favorite('${item.id}')">
+            ${item.favorite?"★":"☆"}
           </button>
 
         </div>
 
-
         <h3>
-          ${escapeHTML(item.title)}
+          ${escape(item.title)}
         </h3>
 
-
         ${
-          item.content
-            ? `
-              <p>
-                ${escapeHTML(item.content)}
-              </p>
-            `
-            : ""
+          item.description
+          ?`
+          <p>
+            ${escape(item.description)}
+          </p>
+          `
+          :""
         }
 
-
-        ${url}
-
+        ${linkHtml}
 
         ${
-          tags
-            ? `
-              <div class="tags">
-                ${tags}
-              </div>
-            `
-            : ""
+          tagHtml
+          ?`
+          <div class="tags">
+            ${tagHtml}
+          </div>
+          `
+          :""
         }
 
-
-        <div class="item-actions">
+        <div class="actions">
 
           <button
-            class="small-btn"
+            class="small"
             onclick="editItem('${item.id}')">
             Edit
           </button>
 
           <button
-            class="small-btn"
-            onclick="copyById('${item.id}')">
+            class="small"
+            onclick="copyItem('${item.id}')">
             Copy
           </button>
 
           <button
-            class="small-btn"
-            onclick="toggleArchive('${item.id}')">
-            ${item.archived ? "Restore" : "Archive"}
+            class="small"
+            onclick="archiveItem('${item.id}')">
+            ${item.archived
+              ? "Restore"
+              : "Archive"}
           </button>
 
           <button
-            class="small-btn danger"
+            class="small danger"
             onclick="deleteItem('${item.id}')">
             Delete
           </button>
@@ -1998,154 +2083,287 @@
 
       </article>
 
-    `;
+      `;
 
-  }
+    }).join("");
 
-
-  /* ============================
-     EDIT
-     ============================ */
+}
 
 
-  function editItem(id) {
+/* =========================
+   ITEM ACTIONS
+========================= */
 
-    const item =
-      items.find(
-        item => item.id === id
-      );
+window.favorite=id=>{
 
-    if (item) {
-      openModal(item);
-    }
+  const item=
+    data.find(x=>x.id===id);
 
-  }
+  if(!item)return;
 
+  item.favorite=!item.favorite;
 
-  function copyById(id) {
+  saveData();
+  render();
 
-    const item =
-      items.find(
-        item => item.id === id
-      );
-
-    if (item) {
-      copyItem(item);
-    }
-
-  }
+};
 
 
-  /* ============================
-     THEME
-     ============================ */
+window.editItem=id=>{
+
+  const item=
+    data.find(x=>x.id===id);
+
+  if(item)openModal(item);
+
+};
 
 
-  const savedTheme =
-    localStorage.getItem(THEME_KEY);
+window.archiveItem=id=>{
 
+  const item=
+    data.find(x=>x.id===id);
 
-  if (savedTheme === "dark") {
+  if(!item)return;
 
-    document.documentElement
-      .setAttribute(
-        "data-theme",
-        "dark"
-      );
+  item.archived=!item.archived;
 
-    document.getElementById(
-      "themeBtn"
-    ).textContent = "☀️";
+  saveData();
+  render();
 
-  }
-
-
-  document
-    .getElementById("themeBtn")
-    .onclick = () => {
-
-      const dark =
-        document.documentElement
-          .getAttribute("data-theme")
-          === "dark";
-
-
-      if (dark) {
-
-        document.documentElement
-          .removeAttribute("data-theme");
-
-        localStorage.removeItem(
-          THEME_KEY
-        );
-
-        document.getElementById(
-          "themeBtn"
-        ).textContent = "🌙";
-
-      } else {
-
-        document.documentElement
-          .setAttribute(
-            "data-theme",
-            "dark"
-          );
-
-        localStorage.setItem(
-          THEME_KEY,
-          "dark"
-        );
-
-        document.getElementById(
-          "themeBtn"
-        ).textContent = "☀️";
-
-      }
-
-    };
-
-
-  /* ============================
-     KEYBOARD SHORTCUT
-     ============================ */
-
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        event.key === "/" &&
-        document.activeElement.tagName !== "INPUT" &&
-        document.activeElement.tagName !== "TEXTAREA"
-      ) {
-
-        event.preventDefault();
-
-        searchInput.focus();
-
-      }
-
-
-      if (
-        event.key === "Escape" &&
-        modal.classList.contains("show")
-      ) {
-
-        closeModal();
-
-      }
-
-    }
+  toastMessage(
+    item.archived
+    ?tr("archived")
+    :tr("restored")
   );
 
-
-  /* ============================
-     INITIAL RENDER
-     ============================ */
+};
 
 
+window.deleteItem=id=>{
+
+  if(!confirm(
+    "Delete this saved item?"
+  ))return;
+
+  data=data.filter(
+    x=>x.id!==id
+  );
+
+  saveData();
   render();
+
+  toastMessage(
+    tr("deleted")
+  );
+
+};
+
+
+window.copyItem=async id=>{
+
+  const item=
+    data.find(x=>x.id===id);
+
+  if(!item)return;
+
+  const text=[
+    item.title,
+    item.description,
+    item.url
+  ].filter(Boolean).join("\n");
+
+  try{
+
+    await navigator.clipboard
+      .writeText(text);
+
+    toastMessage(
+      tr("copied")
+    );
+
+  }catch{
+
+    toastMessage(
+      "Copy unavailable"
+    );
+
+  }
+
+};
+
+
+/* =========================
+   EXPORT
+========================= */
+
+document.getElementById(
+  "export"
+).onclick=e=>{
+
+  e.preventDefault();
+
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+  const link=
+    document.createElement("a");
+
+  link.href=
+    URL.createObjectURL(blob);
+
+  link.download=
+    "shaheen-recall-backup.json";
+
+  link.click();
+
+  URL.revokeObjectURL(
+    link.href
+  );
+
+  toastMessage(
+    tr("exported")
+  );
+
+};
+
+
+/* =========================
+   IMPORT
+========================= */
+
+document.getElementById(
+  "import"
+).onclick=e=>{
+
+  e.preventDefault();
+
+  const input=
+    document.createElement("input");
+
+  input.type="file";
+  input.accept=".json,application/json";
+
+  input.onchange=async()=>{
+
+    const file=input.files[0];
+
+    if(!file)return;
+
+    try{
+
+      const text=
+        await file.text();
+
+      const imported=
+        JSON.parse(text);
+
+      if(!Array.isArray(imported)){
+        throw new Error();
+      }
+
+      data=imported;
+
+      saveData();
+      render();
+
+      toastMessage(
+        tr("imported")
+      );
+
+    }catch{
+
+      alert(
+        "Invalid backup file."
+      );
+
+    }
+
+  };
+
+  input.click();
+
+};
+
+
+/* =========================
+   CLEAR
+========================= */
+
+document.getElementById(
+  "clear"
+).onclick=e=>{
+
+  e.preventDefault();
+
+  if(!data.length)return;
+
+  if(!confirm(
+    "Delete all Recall data?"
+  ))return;
+
+  data=[];
+
+  saveData();
+  render();
+
+  toastMessage(
+    tr("cleared")
+  );
+
+};
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener(
+  "keydown",
+  e=>{
+
+    if(
+      e.key==="/" &&
+      document.activeElement.tagName!=="INPUT" &&
+      document.activeElement.tagName!=="TEXTAREA"
+    ){
+
+      e.preventDefault();
+
+      search.focus();
+
+    }
+
+    if(
+      e.key==="Escape" &&
+      modal.classList.contains("show")
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   START
+========================= */
+
+applyLanguage();
+render();
 
 </script>
 
